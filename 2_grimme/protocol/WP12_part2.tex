@@ -1,0 +1,292 @@
+\documentclass[a4paper,12pt]{scrartcl} 
+
+%Beginn Präambel
+\usepackage[english]{babel} %Deutsche Einstelungen
+\usepackage[utf8]{inputenc} %utf-8 Eingabe
+\usepackage[T1]{fontenc} % Korrekte Aufgabefonds im Aufabedokument
+\usepackage{csquotes} %Anführungsstriche mit \enquote{text}
+\linespread{1.3}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{Graphen/}}
+\usepackage{siunitx}
+\sisetup{locale = US}
+\usepackage{placeins}
+\usepackage{adjustbox}
+\usepackage[version=4,arrows=pgf]{mhchem}
+\usepackage{float}
+\usepackage[backend=biber,style=chem-angew,sorting=none]{biblatex}
+\addbibresource{literatur.bib}
+\usepackage{blindtext}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\usepackage[a4paper, lmargin={2cm}, rmargin={2cm}, tmargin={2cm}, bmargin={2cm}]{geometry}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{pdfstartview=FitH, pdfauthor=Tom Frömbgen}
+\usepackage[headsepline]{scrlayer-scrpage}
+\setlength{\headheight}{18.851pt}
+\setlength{\footheight}{18.851pt}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{WP 12}
+\chead{Theoretical Methods for Condensed Matter}
+\ohead{Part II}
+\ofoot{\pagemark}
+
+
+
+% Neue Kommandos
+\newcommand{\tb}{\textbackslash}
+\newcommand{\tf}{\textbf}
+\newcommand{\x}{\chi}
+\newcommand{\xm}{\chi_ \m{M}}
+\newcommand{\dxm}{\Delta\chi_\m{M}}
+%\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+%\newcommand{\secref}[1]{Section~\ref{#1}}
+%\newcommand{\tabref}[1]{Table~\ref{#1}}
+%\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\m}[1]{\mathrm{#1}}
+\renewcommand{\arraystretch}{1.0}
+\newcommand{\leadingzero}[1]{\ifnum #1<10 0\the#1\else\the#1\fi}
+\newcommand{\euler}{\m{e}}
+\newcommand{\imag}{\m{i}}
+\newcommand{\nt}{\noindent}
+\newcommand{\sub}{\textsubscript}
+\newcommand{\super}{\textsuperscript}
+
+
+\begin{document}
+%
+\thispagestyle{empty}
+
+%
+\begin{center}
+	\begin{LARGE}
+		\vspace{50mm}
+		\textbf{WP12} \\
+		\vspace{15mm}
+		\textbf{Theoretical Methods for Condensed Matter} \\
+		\vspace{15mm}
+		\textbf{Part II} \\
+		\vspace{30mm}
+	\end{LARGE}
+	\begin{large}
+		Tom Frömbgen \\
+		\vspace{20mm}
+		Assistants: Sarah Schmitz \& Marcel Stahn  \\
+		\vspace{10mm}
+		Submission 1: \today \\
+		\vspace{5mm}
+		%		Submission 2:  \today
+	\end{large}
+\end{center}
+
+%
+%\newpage
+%\thispagestyle{empty}
+%\tableofcontents
+\newpage
+%
+\section{Partitioning Noncovalent Interactions}
+%
+The interactions in weakly bound dimers were investigated using the symmetry-adapted perturbation theory\autocite{sapt} (SAPT) as implemented in the \textsc{Molpro2012} program package\autocite[]{molpro2012-brief}. By using the SAPT ansatz, the first and second order contributions to the complexation energy can be obtained as
+%
+\begin{equation}
+	E_\m{SAPT} = E_\m{pol} + E_\m{exch} + E_\m{ind} + E_\m{exch-ind} + E_\m{disp} + E_\m{exch-disp}~,
+\end{equation}
+%
+Therefore, a monomer description via HF or DFT is required.
+%
+\subsection{Interactions in the argon, water and uracil dimers}
+%
+Here, the interactions in the argon, water and uracil dimers were calculated and partitioned on the HF-SAPT/aug-cc-pVTZ\autocite[]{aug-cc-pvxz,aug-cc-pvxz-al_ar} and AC-PBE0\autocite[]{pbe0}/aug-cc-pVTZ level of theory. In case of PBE0, an asymptotic correction (AC) to the monomer exchange-correlation potential is added to obtain reasonable results. DFT-based SAPT needs experimental and theoretical ionization energies as input for the dimer calculation. The experimental ones were obtained from the NIST webpage\autocite[]{nist}. For the theoretical ones a monomer calculation was performed, subsequently using the negative HOMO energy as the negative ionization potential according to Koopman's theorem. For the uracil dimer a smaller aug-cc-pVDZ basis set was used to reduce the computational effort. Note that with the decreasing basis set size larger basis set incompleteness (BSIE) error arise. It is important to mention that within the SAPT ansatz, there is per definition no basis set superposition error (BSSE) since no calculation of the full dimer is carried out.
+
+The obtained energies are displayed in \autoref{tab:noncov}. The first order polarization energy $ E^1_\m{pol} $ as well as the second order induction $ E^2_\m{ind} $ and dispersion $ E^2_\m{disp} $ energies are negative throughout all the calculations. This is reasonable since these processes are per definition attractive. Opposed to that, the first order exchange energy $ E^1_\m{exch} $ and the second order induction-exchange $ E^2_\m{ind-exch} $ and dispersion-exchange $ E^1_\m{disp-exch} $ contribute positively and hence repulsively. Taking a look to the summed energy contributions $ E^1_\m{tot} $ and $ E^2_\m{tot} $ one can see that the second order energy is negative for all cases. In case of the unpolar argon dimer, this can be explained by the large contribution of the dispersion energy which is a second order quantity. In case of the water and uracil dimers, dispersion still gives a large part of the energy, but the induction energy is slightly larger for water and significantly larger for uracil which can be deduced to the polar nature of the latter dimers as compared to argon. Since the summed second order contributions are close to each other w.r.t the comparison between HF and PBE0, the differences in the binding energy are produces by the differences in the summed first order energy contributions which are mainly caused by the first order exchange energy. The summed first order energies are positive in case of argon (missing dispersion as explained before). For water and uracil, they strongly differ between HF and PBE0 resulting even in opposite signs in case of uracil. The more repulsive nature of the DFT energy is deduced to the wrong PBE0 potential which is asymptotically corrected but still wrong.
+
+The polarity of the molecules increases in the order argon < water < uracil leading to shorter distances between the monomers. Accordingly, the short-ranged exchange becomes more important and heavily contributes to the binding energy. Hence, the too repulsive DFT potential causes deviations as compared to the overbinding HF in the above-mentioned order.
+%
+\begin{table}
+	\centering
+	\captionabove{Contributions to the binding energies of the argon, water and uracil dimers obtained by SAPT. Energies are given in \si[]{\hartree}.}
+	\label{tab:noncov}
+	\begin{adjustbox}{width=\columnwidth,center}
+		\begin{tabular}{l|ccccccccc}
+			\toprule
+			                        & $ E^1_\m{pol} $ & $ E^1_\m{exch} $ & $ E^2_\m{ind} $ & $ E^2_\m{ind-exch} $ & $ E^2_\m{disp} $ & $ E^2_\m{disp-exch} $ & $ E^1_\m{tot} $ & $ E^2_\m{tot} $ & $ E^1_\m{tot} + E^2_\m{tot} $ \\
+			\midrule
+			$ \ce{Ar2} $/HF         & -0.1195         & 0.4005           & -0.1469         & 0.1442               & -0.5018          & 0.0355                & 0.2811          & -0.4692         & -0.1881                       \\
+			$ \ce{Ar2} $/PBE0       & -0.1249         & 0.4120           & -0.1544         & 0.1513               & -0.5236          & 0.0382                & 0.2871          & -0.4886         & -0.2016                       \\
+			$ \ce{(Uracil)2} $/HF   & -26.8849        & 25.3701          & -12.8279        & 6.2995               & -8.7528          & 1.5528                & -1.5147         & -13.7284        & -15.2431                      \\
+			$ \ce{(Uracil)2} $/PBE0 & -25.7862        & 29.4175          & -15.6878        & 9.4262               & -9.6500          & 1.9399                & 3.6314          & -13.9717        & -10.3403                      \\
+			$ \ce{(H2O)2} $/HF      & -7.3830         & 5.4955           & -2.3656         & 1.2402               & -2.2502          & 0.3952                & -1.8875         & -2.9804         & -4.8679                       \\
+			$ \ce{(H2O)2} $/PBE0    & -7.0930         & 6.3003           & -2.7487         & 1.6166               & -2.4950          & 0.4730                & -0.7927         & -3.1542         & -3.9469                       \\
+			\bottomrule
+		\end{tabular}
+	\end{adjustbox}
+\end{table}
+
+\begin{figure}
+	\centering
+	\input{Graphen/pes.pgf}
+	\vspace{-20pt}
+	\caption{Distance-dependent partitioning of the noncovalent interactions in the argon dimer.}
+	\label{fig:pes}
+\end{figure}
+
+
+
+\subsection{Potential energy surface of the argon dimer}
+%
+The potential energy surface of the argon dimer was computed between 2.5 and $ \SI{4.0}{\angstrom} $ on the HF-SAPT/aug-cc-pVTZ level of theory. The distance dependency of all contributions to the binding energy is displayed in \autoref{fig:pes}.
+
+Overall, it can be observed that the contributions decay to zero with increasing monomer distance. Note that their convergence behavior is different and will be exemplary discussed below. First order polarization as well as second order induction and dispersion contribute attractively, whereas the mixed second order terms and the first order exchange energy contribute repulsively. The magnitude of the contributions at the equilibrium distance of $ \SI{3.76}{\angstrom} $ is shown in \autoref{tab:noncov}. At smaller distances, most of the contributions -- except for $E_\m{disp-exch} $ -- become very large.
+
+The analytical distance dependencies of the first order exchange and second order dispersion energy are $ \m{e}^{-r} $ and $ r^{-6} $, respectively as shown in \autoref{fig:fit}.
+
+\begin{figure}
+	\centering
+	\input{Graphen/fit.pgf}
+	\vspace{-20pt}
+	\caption{Distance-dependency of the first order exchange $ E^1_\m{exch} $ and second order dispersion energy $ E^2_\m{disp} $ and suitable fits ($ \m{e}^{-r} $ and $ r^{-6} $, respectively) in the argon dimer @/.}
+	\label{fig:fit}
+\end{figure}
+%
+\section{Supermolecular Approaches}
+%
+The binding energy  of a system AB consisting out of two fragments A, B is (in the supermolecular approach) defined by the energy difference between the AB system $ E_\mathrm{AB} $ and the (summed) fragments $ E_\mathrm{A},~E_\mathrm{B} $:
+%
+\begin{equation}
+	E_\mathrm{bind} = E_\mathrm{AB} - ( E_\mathrm{A} + E_\mathrm{B} )~.
+\end{equation}
+%
+The total energy $ E_\mathrm{tot} $ of an arbitrary system is composed of the SCF energy $ E_\mathrm{SCF} $ and correlation energy $ E_\mathrm{corr} $. Knowing the convergence behavior of $ E_\mathrm{SCF} $ and $ E_\mathrm{corr} $ w.r.t. the basis set size X, one can extrapolate the energies to the basis set limit (CBS) via
+%
+\begin{equation}
+	E_\mathrm{SCF}^{(\infty)} = E_\mathrm{SCF}^{(\mathrm{X})} + A \cdot \mathrm{e^{-\alpha\sqrt{X}}}~,
+\end{equation}
+%
+\begin{equation}
+	E_\mathrm{corr}^{(\infty)} = E_\mathrm{corr}^{(\mathrm{X})}+ B \cdot \mathrm{X^{-\beta}}~.
+\end{equation}
+%
+The parameters $ \alpha,\beta $ are basis set dependent and were optimized for the present case as $ \alpha = 5.79 $ and $ \beta = 3.05 $. To extrapolate CCSD(T) results to the basis set limit, the following formula can be applied:
+%
+\begin{equation}
+	E_\mathrm{CCSD(T)}^\mathrm{(CBS)} = E_\mathrm{MP2}^\mathrm{(CBS)} + ( E_\mathrm{CCSD(T)}^\mathrm{(X)} - E_\mathrm{MP2}^\mathrm{(X)})~.
+\end{equation}
+%
+\begin{table}
+	\captionabove{Hartree--Fock energies $ E_\mathrm{RHF}$, correlation energies $ E_\mathrm{corr} $ and total energies $ E_\mathrm{tot} $ (all in $ \si[]{\hartree} $) of the water and argon monomer and dimer. \textbf{X}Z refers to aug-cc-pV\textbf{X}Z. }
+	\label{tab:mono-dim}
+	\begin{subtable}[c]{1.0\textwidth}
+		\centering
+		\subcaption{Energies of water.}
+		\begin{tabular}{l|ccc|ccc}
+			\toprule
+			           &                   & Monomer            &                   &                   & Dimer              &                   \\
+			           & $ E_\mathrm{RHF}$ & $ E_\mathrm{corr}$ & $ E_\mathrm{tot}$ & $ E_\mathrm{RHF}$ & $ E_\mathrm{corr}$ & $ E_\mathrm{tot}$ \\
+			\midrule
+			MP2/TZ     & -76.060707        & -0.268399          & -76.329106        & -152.126933       & -0.539404          & -152.666337       \\
+			MP2/QZ     & -76.066089        & -0.285972          & -76.352061        & -152.137665       & -0.574415          & -152.712080       \\
+			CCSD(T)/TZ & -76.060707        & -0.281761          & -76.342468        & -152.126933       & -0.566184          & -152.693117       \\
+			\bottomrule
+		\end{tabular}
+	\end{subtable}
+
+	\begin{subtable}[c]{1.0\textwidth}
+		\centering
+		\subcaption{Energies of argon.}
+		\begin{adjustbox}{width=\columnwidth,center}
+			\begin{tabular}{l|ccc|ccc}
+				\toprule
+				           &                   & Monomer            &                   &                   & Dimer              &                   \\
+				           & $ E_\mathrm{RHF}$ & $ E_\mathrm{corr}$ & $ E_\mathrm{tot}$ & $ E_\mathrm{RHF}$ & $ E_\mathrm{corr}$ & $ E_\mathrm{tot}$ \\
+				\midrule
+				MP2/TZ     & -526.813355       & -0.210921          & -527.024277       & -1053.626321      & -0.422740          & -1054.049060      \\
+				MP2/QZ     & -526.816807       & -0.232142          & -527.048949       & -1053.633199      & -0.465215          & -1054.098413      \\
+				CCSD(T)/TZ & -526.813355       & -0.235403          & -527.048758       & -1053.626321      & -0.471625          & -1054.097946      \\
+				\bottomrule
+			\end{tabular}
+		\end{adjustbox}
+	\end{subtable}
+\end{table}
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Binding energies of the water and argon dimer in $ \si[]{kcal\per\mole} $ computed on different levels of theory and comparison to the experiment.}
+	\label{tab:extrapolated}
+	\begin{tabular}{l|cccc}
+		\toprule
+		                & HF/CBS & CCSD(T)/CBS & AC-PBE0-SAPT & Exp. \\
+		\midrule
+		$ \ce{(H2O)2} $ & -3.444 & -4.967      & -3.947       & XXX  \\
+		$ \ce{Ar2} $    & 0.261  & -0.290      & -0.202       & XXX  \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+\section{Molecules in Solution}
+%
+The equilibrium association free energy $ \Delta G_\mathrm{a} $ of a host-guest system (molecular tweezer with tetracyanoquinone) at room temperature in toluene is accessed by a supermolecular approach. There are different contributions to this quantity, namely the DFT Energy $ E_\mathrm{tot} $, the two- and three-body dispersion correction $ E_\mathrm{D3}^\mathrm{ATM} $, the geometrical Counter--Poise correction energy $ E_\mathrm{gCP} $, the free energy correction in the rigid-rotor-harmonic-oscillator approximation $ \Delta G_\mathrm{RRHO}^{298} $ and the solvent free energy correction $ \Delta \delta G_\mathrm{solv}^{298} $:
+%
+\begin{equation}
+	\Delta G_\mathrm{a} =  E_\mathrm{tot} + E_\mathrm{D3}^\mathrm{ATM} + E_\mathrm{gCP} + \Delta G_\mathrm{RRHO}^{298} +  \Delta \delta G_\mathrm{solv}^{298}~.
+\end{equation}
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Contributions to the equilibrium association free energy of the host-guest system. Energies are given in \si[]{\hartree}, except for the row \enquote{$\Delta$} which is given in $ \si[]{kcal\per\mole} $.}
+	\label{tab:complex}
+	\begin{tabular}{l|ccccccccc}
+		\toprule
+		System   & $ E_\m{tot} $ & $ E_\m{disp} $ & $ E_\m{gCP} $ & $ \Delta G_{RRHO}^{298} $ & $ \Delta \delta G_{solv}^{298}$ \\
+		\midrule
+		host     & -1619.355877  & -0.145975      & 0.037984      & 0.526756                  & -0.045041                       \\
+		guest    & -678.950769   & -0.035501      & 0.007677      & 0.082988                  & -0.023998                       \\
+		complex  & -2298.299259  & -0.239366      & 0.047508      & 0.633091                  & -0.045983                       \\
+		\midrule
+		$\Delta$ & 4.64          & -36.33         & 1.16          & 14.65                     & 14.47                           \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+$ \Delta G_a = \SI[]{-1.41}{kcal\per\mole} $
+%
+\section{Organic Solids}
+%
+The sublimation enthalpy $ \Delta H_\mathrm{sub} $ of an organic urea crystal at room temperature is computed. Its defined as the difference between the enthalpies of the two phases $ H_\mathrm{gas},~H_\mathrm{solid} $ which themselves can be split up into different contributions
+%
+\begin{equation}
+	\Delta H_\mathrm{sub} = H_\mathrm{gas} - H_\mathrm{solid}
+\end{equation}
+%
+\begin{equation}
+	H^i = E_\mathrm{el}^i + E_\mathrm{trans}^i + E_\mathrm{rot}^i + E_\mathrm{vib}^i + pV~,
+\end{equation}
+%
+where the $ E^i $ denote the electronic, translational, rotational and vibrational energy contributions, respectively. $ pV $ is the volume work. The vibrational energy is treated in the harmonic approximation and therefore consists of a constant part -- the zero-point vibrational energy ZPVE -- and a temperature dependent part.
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Contributions sublimation enthalpy of urea. Energies are given in $ \si[]{kcal\per\mole} $.}
+	\label{tab:sublimation}
+	\begin{tabular}{l|cccccccc}
+		\toprule
+		& $ E_\mathrm{el}^\mathrm{TPSS} $ & $ E_\mathrm{el}^\mathrm{DFTB} $ & ZPVE & $ E_\mathrm{trans} $ & $ E_\mathrm{rot} $ & $ E_\mathrm{vib}^\mathrm{DFTB} $ & $ pV $ & $ H $ \\
+		\midrule
+		gas   & -1278.15 & -7123.36 & 37.73 & 0.00 & 0.00 & 2.23 & 0.06 & -7083.34 \\
+		solid & -1293.40 & -7150.34 & 38.81 & 0.30 & 0.30 & 3.29 & 0.00 & -7107.65 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+\newpage
+\printbibliography[title={Literature}]
+%
+\end{document}

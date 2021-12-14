@@ -1,0 +1,16 @@
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.lmp
+*.DAT
+*.LOG
+2_grimme/ex*
+1_kirchner/spc*
+*/.ipynb_checkpoints

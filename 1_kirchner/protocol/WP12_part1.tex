@@ -1,0 +1,289 @@
+\documentclass[a4paper,12pt]{scrartcl} 
+
+%Beginn Präambel
+\usepackage[english]{babel} %Deutsche Einstelungen
+\usepackage[utf8]{inputenc} %utf-8 Eingabe
+\usepackage[T1]{fontenc} % Korrekte Aufgabefonds im Aufabedokument
+\usepackage{csquotes} %Anführungsstriche mit \enquote{text}
+\linespread{1.3}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{Graphen/}}
+\usepackage{siunitx}
+\sisetup{locale = US}
+\usepackage{placeins}
+\usepackage[version=4,arrows=pgf]{mhchem}
+\usepackage{float}
+\usepackage[backend=biber,style=chem-angew,sorting=none]{biblatex}
+\addbibresource{literatur.bib}
+\usepackage{blindtext}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\usepackage[a4paper, lmargin={2cm}, rmargin={2cm}, tmargin={2cm}, bmargin={2cm}]{geometry}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{pdfstartview=FitH, pdfauthor=Tom Frömbgen}
+\usepackage{fancyhdr}
+%\setlength{\skip\footins}{3mm}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{WP 12}
+\fancyhead[C]{Theoretical Methods for Condensed Matter}
+\fancyhead[R]{Tom Frömbgen}
+\fancyfoot[R]{\thepage}
+
+
+
+% Neue Kommandos
+\newcommand{\tb}{\textbackslash}
+\newcommand{\tf}{\textbf}
+\newcommand{\x}{\chi}
+\newcommand{\xm}{\chi_ \m{M}}
+\newcommand{\dxm}{\Delta\chi_\m{M}}
+%\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+%\newcommand{\secref}[1]{Section~\ref{#1}}
+%\newcommand{\tabref}[1]{Table~\ref{#1}}
+%\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\m}[1]{\mathrm{#1}}
+\renewcommand{\arraystretch}{1.0}
+\newcommand{\leadingzero}[1]{\ifnum #1<10 0\the#1\else\the#1\fi}
+\newcommand{\euler}{\m{e}}
+\newcommand{\imag}{\m{i}}
+\newcommand{\nt}{\noindent}
+\newcommand{\sub}{\textsubscript}
+\newcommand{\super}{\textsuperscript}
+
+
+\begin{document}
+%
+\thispagestyle{empty}
+
+%
+\begin{center}
+	\begin{LARGE}
+		\vspace{50mm}
+		\textbf{WP12} \\
+		\vspace{15mm}
+		\textbf{Theoretical Methods for Condensed Matter} \\
+		\vspace{15mm}
+		\textbf{Part I} \\
+		\vspace{30mm}
+	\end{LARGE}
+	\begin{large}
+		Tom Frömbgen \\
+		\vspace{20mm}
+		Assistants: Shima Taherivardanjani \& Henrik Niemöller  \\
+		\vspace{10mm}
+		Submission 1: \today \\
+		\vspace{5mm}
+%		Submission 2:  \today
+	\end{large}
+\end{center}
+
+%
+%\newpage
+%\thispagestyle{empty}
+%\tableofcontents
+\newpage
+%
+\section{Introduction}
+%
+	This course focuses on Molecular Dynamics (MD). The underlying theory was explained during the lecture. To gain further insights into the topic of MD, simulations of water which is the most important liquid in humans' life were to be performed. Although the \ce{H2O} molecule is rather simple, simulations of liquid water require large effort to describe the inter- and intramolecular interactions accurately. There are different approaches to face this challenge ranging from \emph{ab initio} quantum chemical methods to (semi) empirical force fields.
+	
+	Herein, three different force fields that were especially developed for water and the results of their application are presented: 
+	\begin{enumerate}
+		\item The extended simple point charge water model SPC/E\autocite{berendsen1987missing} is a rigid, three-site effective pair potential. The three sites which are located at the positions of hydrogen and oxygen atoms carry point charges. Non-bonded interactions are described for oxygen-oxygen pairs exclusively, via a Lennard-Jones potential. Due to its rigidness this model allows for a large time step and thus fast computation since the fastest motions of this system which limit the time step of the simulation are librational movements around hydrogen bonds.
+		
+		\item The flexible simple point charge water model SPC/Fw\autocite{wu2006flexible} is a flexible, three-site effective pair potential which contains point charges on the interaction sites that are located on the hydrogen and oxygen atoms. Again, non-bonded interactions are described for oxygen-oxygen pairs exclusively via a Lennard-Jones potential. In contrast to the model presented before, SPC/Fw describes water not as rigid but with flexibility regarding bond stretching and angle bending. Accordingly this results in a smaller time step and higher computational costs.
+		
+		\item The SPC-FQ\autocite{rick1994dynamical} water model is a rigid, three-site, polarizable water model. This model tries to make an improvement compared to SPC/E by introducing many-body effects in the form of electric polarization. The charges are not fixed but can adapt to fluctuations of the electric field caused by the interactions with other molecules. The improvement of the charge description comes with a drastic increase in computational demand since special algorithms are needed to solve the equations of the electric field.
+	\end{enumerate}
+
+	
+	
+%
+\section{Computational Details}
+%
+	Three simulations of liquid water employing the force fields SPC/E, SPC/Fw and SPC-FQ were performed using the \textsc{Lammps}\autocite{plimpton1995fast} program package. In each of these, 512 water molecules were simulated in a cubic box ($ a = \SI{24.86}{\angstrom} $) with periodic boundary conditions. The chosen length of the box edge reflects the experimental density of water (see \autoref{tab:parameters}). The temperature was controlled by a Nos\'{e}--Hoover thermostat\autocite{nose1984unified,nose1984molecular}  ($T = \SI{298.15}{\kelvin},~ \tau=\SI{100}{\femto\second}$). The SHAKE\autocite{ryckaert1977numerical} algorithm was used. The cutoff radius for Lennard--Jones interactions was chosen as \linebreak $ r_C = \SI{11.0}{\angstrom} $. Coulomb interactions beyond this cutoff radius were computed by usage of the particle-particle particle mesh solver\autocite{hockney1988computer} with an accuracy of $10^{-5}$. The time step was chosen as $ \delta t=\SI{1.0}{\femto\second} $. An initial configuration was with random velocities was generated. After a melting of $ \SI{2}{\pico\sec} $ an equilibration run of $ \SI{100}{\pico\second} $ was performed, subsequently production runs of  $ \SI{100}{\pico\second} $ and $ \SI{1}{\nano\second} $ were performed with high and low dumping frequency, respectively. The force field parameters are depicted in \autoref{tab:parameters}. The obtained trajectories were analyzed with \textsc{Travis}\autocite{brehm2011travis,brehm2020travis}.
+	%
+	\begin{table}
+		\centering
+		\captionabove{Parameters of the water models SPC/E, SPC/Fw SPC-FQ: O--H stretching force constant $ k_b $ (in $ \SI{}{\frac{kcal}{\mole\cdot\angstrom^2}} $), O--H reference bond length $ r_0 $ (in $ \SI{}{\angstrom} $), H--O--H bending force constant $ k_a $ (in $ \SI{}{\frac{kcal}{\mole\cdot\radian^2}} $), H--O--H reference angle $ \alpha_0 $ (in $ \SI{}{deg} $), Lennard--Jones well depth  $ \varepsilon $ (in $ \SI{}{\frac{kcal}{\mole}} $) and diameter $ \sigma $ (in $ \SI{}{\angstrom} $), charges of the oxygen and hydrogen atoms $ q_O,~q_H $ (in $ e $) and density $ \rho $ (in $ \SI{}{\frac{\kilogram}{\deci\meter^3}} $).  }
+		\label{tab:parameters}
+		\begin{tabular}{c|ccccccccc}
+			\toprule
+			& $ k_b $ & $ r_0 $ & $ k_a $ & $ \alpha_0 $ & $ \varepsilon $ & $ \sigma $ & $ q_O $ & $q_H $ & $ \rho $ \\ 
+			\midrule
+			SPC/E & $ \infty $ & 1.000 & $ \infty $ & 109.47 & 0.1553 & 3.166 & -0.8476 & 0.4238 & 0.997\\
+			SPC/Fw & 529.58 & 1.012 & 37.95 & 113.24 & 0.1554 & 3.165 & -0.8200 & -0.4100 & 0.997 \\
+			SPC-FQ & $\infty $ & 1.000 & $ \infty $ & 109.47 & 0.2941 & 3.176 & -0.8200 & 0.4100 & 0.997\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+%
+\section{Results and Discussion}		
+%	
+	\subsection{Radial Distribution Functions}
+	%
+		To gain a first insight into a simulation (after the visual inspection of the trajectories), radial distribution functions (RDFs) provide important information about the interactions in the simulated system. A RDF of A--B displays the probability $ g(r) $ to find a defined particle B at distance $ r $ away from another defined particle A. Oxygen-oxygen as well as oxygen-hydrogen RDFs have been computed. The latter ones refer to O--H pairs where O and H are not part of the same molecule. 
+		
+		As can be seen in \autoref{fig:rdf}, first maxima of the O--O RDFs are at larger distance compared to the O--H RDFs throughout all three investigated force fields. The position of the first maximum refers to the average distance between the respective atoms. This observation  is reasonable since oxygen and hydrogen atoms are oppositely charged and thereby attract each other, whereas oxygen atoms repulse each other. Noting the tendency of water molecules to form hydrogen bonds, the position of the first maximum can be assigned to the average length of a hydrogen bond. Analogously, the RDFs' first minima represent the extent of the first solvation shell. Again, this distances are larger for the O--O atom pairs than for the O--H atom pairs.
+		
+		Comparing the three models, it is observed that SPC/E and SPC/Fw show similar results with respect to the RDFs. Opposed to that, the simulation with SPC-FQ as a model shows first maxima and minima that are shifted to increased distances which can be deduced to the fact that SPC-FQ is a more repulsive model. This force field allows for charge distribution according to the environment of a molecule. Vice versa, SPC/E and SPC/Fw describe electrostatic interactions by point charges only. Since the charges are more located (or in a way more \enquote{concentrated} / less diffuse) in SPC/E and SPC/Fw, sharper and higher peaks at smaller distances are observed in the RDFs.
+		
+		Furthermore, the first maximum of the O--H RDF of SPC-FQ shows an unexpectedly small value: $ g(r_\m{max}) < 1 $. Additionally the second maximum shows an exceptionally high peak compared to the first one. This indicates that the number of particles in the first solvation shell is rather low, compared to the second one. This behavior is not observed for SPC/E and SPC/Fw, but exactly the other way around. The first peak in the O--H RDF represents the commonly known water hydrogen bonds, the second peak summarizes all other hydrogen-oxygen interactions.
+		
+		Comparison of the obtained results with X-ray scattering\autocite{hura2000high} and neutron diffraction\autocite{soper2000radial} experiments proves the SPC/E and SPC/Fw models to yield reasonable results whereas SPC/FQ does not display the interactions between water molecules correctly w.r.t the RDFs.
+		
+		\begin{figure}
+			\centering
+			\input{Graphen/rdf.pgf}
+			\vspace{-20pt}
+			\caption{Radial distribution functions of intermolecular oxygen--oxygen (left) and oxygen--hydrogen (right) interactions.}
+			\label{fig:rdf}
+		\end{figure}
+	%
+	\subsection{Angular Distribution Functions}
+	%
+		The angular distribution functions (ADFs) contain information regarding the occurrence of a certain defined angle $ \alpha $. As can be seen in \autoref{fig:adf}, the O--H--O angle shows a very strong maximum at $ \SI{0}{\degree} $ and a small maximum at around $ \SI{110}{\degree} $. The origin of these observations is discussed in \autoref{sec:cdf}. The slight deviation of the SPC-FQ model w.r.t the other models in the area of small angles is noted but not important and negligible here. Additionally it is noteworthy that the jump of the curves at very small angles is unphysical and originates from sampling and resolution issues.
+		
+		\begin{figure}
+			\centering
+			\input{Graphen/adf.pgf}
+			\vspace{-20pt}
+			\caption{Angular distribution functions of the O--H--O angles.}
+			\label{fig:adf}
+		\end{figure}
+	%
+	\subsection{Combined Distribution Functions}
+	\label{sec:cdf}
+	%
+		Combined distribution functions offer the possibility to correlate different quantities to access a deeper insight into certain properties. In this case, the previously discussed O--O RDFs and O--H--O ADFs are correlated. As can be seen in \autoref{fig:cdf} there are two distinct maxima in all of the CDF plots that are located at the first position maximum of the respective RDF on the x-axis and around 0 and $ \SI{110}{\degree}  $ on the y-axis. As mentioned before, the RDFs of the SPC/E and SPC/Fw models differ from these of the SPC/FQ model. That is also represented in the CDF plots, e.g. by the position of the spot with maximum intensity which is shifted to larger $ r $ values as compared to the other models. Furthermore, it is observed that the intensity of the maximum in the SPC/FQ CDF near $ \SI{0}{\degree} $ is lower compared to the other models which arises from the relative heights of the RDF peaks that were discussed before.
+		
+		From these plots it can be seen that there is a highly preferred conformation of two water molecules w.r.t each other which is nearly linear with an O--H--O angle of $\approx \SI{0}{\degree} $. The second maximum around $ \SI{110}{\degree}  $ is just a statistical effect and corresponds to the oxygen-hydrogen pairs which are close to each other but do not form a hydrogen bond. Consequently, the chosen angle cutoff of $ \SI{30}{\degree} $ for the hydrogen bond dynamics analyses (see \autoref{sec:aggr}) is justified by the obtained plots. By choosing this cutoff value all configurations that can be assigned as a hydrogen bond are included. 
+		%
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.95\textwidth]{cdf}
+			\caption{Combined radial and angular distribution functions.}
+			\label{fig:cdf}
+		\end{figure}
+	%
+	\subsection{Hydrogen Bond Dynamics}
+	\label{sec:aggr}
+	%
+		So far, only structural properties of the systems have been discussed. By performing MD simulations, dynamical properties can be investigated as well. As mentioned before, hydrogen bonds are of great interest in liquid water. Therefore it is reasonable to analyze hydrogen bond dynamics which are described by the life times of these hydrogen bonds. 
+		
+		To obtain life times from a simulation the dimer autocorrelation function (ACF) of pairs of two water molecules is computed. It is important to precisely define geometrical criteria for water dimers to make sure that the observed property really corresponds to a hydrogen bond lifetime. Previously it was discussed why the angular criterion is chosen as $ 0 \leq \alpha \leq \SI{30}{\degree} $. Furthermore, a distance criterion has to be defined. This is usually chosen as the distance $ r $ at the first minimum in the O--O RDFs. In the present cases, these are $ \SI{326}{\pico\meter}, \SI{330}{\pico\meter}, \SI{450}{\pico\meter}$ for SPC/E, SPC/Fw and SPC/FQ, respectively.
+		
+		In \autoref{fig:aggr} two kinds of ACFs are depicted, namely the continuous and intermittent ACFs. The former ones count a hydrogen bond as broken forever once the geometrical criteria are not fulfilled. If the hydrogen bond reforms it is counted as a new one. Opposed to that, the latter ones allow for reformation of a hydrogen bond and count it as if it never broke once the criteria are fulfilled again. From these definitions one can figure out that the continuous ACFs will decay faster as compared to the intermittent ones.
+		
+		In the present case, the ACFs decay in the order SPC/FQ > SPC/Fw > SPC/E for both kinds of ACFs. Taking a closer look at the continuous functions one can find that SPC/E and SPC/Fw behave somewhat similar and the curves are close to each other, whereas the SPC/FQ curve decays way faster. Recapitulating that the SPC/E and SPC/Fw models differ by the presence / absence of flexibility regarding bond stretching and angle bending, it seems questionable weather vibrations have to be included in a water model to describe hydrogen bonds accurately. The SPC/FQ model is more repulsive compared to sPC/E and SPC/Fw as discussed before and yields weaker hydrogen bonds as the curves decay the fastest.
+		
+		By integrating the ACF, one can obtain the hydrogen bond life time $ \tau $ (see \autoref{tab:tau}). The values clearly display the trend discussed before. Concerning the \enquote{true} values of $ \tau $ it can be said that these should lay in between $ \tau_c $ and $ \tau_i  $.
+		%
+		\begin{figure}
+			\centering
+			\input{Graphen/aggr.pgf}
+			\vspace{-20pt}
+			\caption{Continuous (left) and intermittent (right) dimer autocorrelation functions.}
+			\label{fig:aggr}
+		\end{figure}
+		%
+		\begin{table}
+			\centering
+			\captionabove{Hydrogen bond lifetimes $ \tau_c,~ \tau_i  $ (in ps) derived from integration of the continuous and intermittent ACFs, respectively.}
+			\label{tab:tau}
+			\begin{tabular}{c|ccc}
+				\toprule
+				& SPC/E & SPC/Fw & SPC-FQ \\ 
+				\midrule
+				$ \tau_c $ & 1.74 & 1.26 & 0.29 \\
+				$ \tau_i $ & 21.70 & 11.23 & 2.50\\
+				\bottomrule
+			\end{tabular}
+		\end{table}
+	%
+	\subsection{Mean Square Displacement}
+	%
+		Another property which can be computed from the simulation data is the mean square displacement (MSD) and -- according to the Einstein equation of the Brownian motion -- thus the diffusion coefficient $ D $ which can be yielded by a linear regression. It is noteworthy that the diffusion coefficient could also be calculated by integrating the velocity autocorrelation function (VACF) which is not done here.
+		
+		\autoref{fig:msd} shows a linear behaviour of the MSD as a function of time. Additionally, the trends that have been observed so far, continue: SPC/E and SPC/Fw behave similarly, but SPC/FQ deviates from the other models. Due to its higher repulsiveness, the water molecules of the latter model move faster and produce a higher diffusion coefficient. Comparing the obtained values to experimental data\autocite{krynicki1978pressure} (at $ \SI{300}{\kelvin} $) leads to the conclusion, that SPC/E is acceptably close to the experiment ($ D_\m{exp} = \SI{2.9e-9}{\pico\meter^2\per\pico\second}$), whereas SPC/Fw and SPC/FQ are more off.
+		%
+		\begin{figure}
+			\centering
+			\input{Graphen/msd.pgf}
+			\vspace{-20pt}
+			\caption{Mean square displacement of the water molecules.}
+			\label{fig:msd}
+		\end{figure}
+	%
+	\subsection{Velocity Autocorrelation Function}
+	%
+		Investigating the VACF of the simulated systems, the graphs depicted in \autoref{fig:vacf} are obtained. Generally, all models produce VACFs that decay exponentially and have a quadratic shape at $ t \rightarrow 0 $. They fastly decay to a minimum which is followed by a brighter maximum and then oscillate around zero. SPC/E and SPC/Fw VACFs show similar shapes but the latter one displays high-frequent oscillations which are caused by the intramolecular vibrations. These graphs also have a valley at negative values of $ A(\tau) $, indicating that the velocity has been turned into the opposite direction as compared to $ v(0) $. This motion in the opposite direction is caused by the cage structure of the liquid (also known as cage effect).
+		
+		SPC/FQ shows a slightly slower decay in the beginning and becomes negative just for a short period of time. Overall it does not fluctuate as much as the other models and approaches zero faster. From RDFs it was observed that the solvation shells in the SPC/FQ model are not as densely packed as for SPC/E and SPC/Fw which results in the slower decay of the VACF in the beginning since there are not that many collisions between particles.
+		%
+		\begin{figure}
+			\centering
+			\input{Graphen/vacf.pgf}
+			\vspace{-20pt}
+			\caption{Velocity autocorrelation functions of water.}
+			\label{fig:vacf}
+		\end{figure}
+	%
+	\subsection{Power Spectra}
+	%
+		The previously discussed VACF is furthermore useful since it can be used to access the power spectrum of a system by Fourier transformation. A power spectrum displays all core degrees of freedom (translation, rotation, vibration) and is not restricted to any kind of selection rules like e.g. Raman or IR spectra. A power spectrum is experimentally not measurable but gives information concerning the modes that can be expected in other spectra. Two different kind of power spectra have been computed and shown in \autoref{fig:power}: Those of the oxygen atoms and those of the whole systems.
+		
+		The power spectra of the oxygen atoms are almost identical for SPC/E and SPC/Fw up to a wavenumber of $ \SI{1000}{\centi\meter^{-1}} $. SPC/FQ does not deviate strongly. For all models a broad peak representing translational and rotational modes is shown in the named wavenumber range. At $ \tilde{\nu} >  \SI{1000}{\centi\meter^{-1}} $ only SPC/Fw shows peaks. This is reasonable since this model is the only one with intramolecular vibrations. The peak at around $ \SI{1500}{\centi\meter^{-1}} $ corresponds to the bending vibration of water and the peaks around $ \SI{1500}{\centi\meter^{-1}} $ represent the symmetrical and anti-symmetrical stretching vibrations, respectively. Since oxygen atoms are heavier than hydrogen atoms, the former do not move strongly due to the vibrations which results in the low intensities seen in the spectra.
+		
+		Accordingly, the power spectra of the whole systems display peaks at the same positions as mentioned before but with higher intensity. In the low-frequency region of $ \tilde{\nu} <  \SI{1000}{\centi\meter^{-1}} $ SPC/E and SPC/Fw behave similarly again, whereas SPC/FQ differs.
+		
+		At this point it should be remarked that the use of these power spectra are questionable. The spectra are obtained based on the parameters that were put into the simulations, more precisely on the force constants. To obtain the frequencies of the vibrations, a diagonalization of the force constant matrix would have been sufficient -- no simulation is necessary. On the other hand, it has to be made clear that the possibility to obtain power spectra from MD simulations by simply Fourier transforming the VACF is a great advantage.
+		%
+		\begin{figure}
+			\centering
+			\input{Graphen/power.pgf}
+			\vspace{-20pt}
+			\caption{Power spectra of the oxygen atoms (left) and the entire water molecules (right).}
+			\label{fig:power}
+		\end{figure}
+	%
+	\subsection{Dipole Reorientation Dynamics}
+	%
+		The last analyses discussed in this report are the dipole reorientation dynamics which were performed for SPC/E and SPC/Fw exclusively since the computation is very demanding for polarizable charges. By performing a biexponential fit of the form
+		%
+		\begin{equation}
+			A(\tau) = a_1 \cdot \exp\left( -\frac{\tau}{t_1} \right) + a_2 \cdot \exp\left( -\frac{\tau}{t_2} \right)
+		\end{equation}
+		%
+		and subsequent integration of the function as
+		%
+		\begin{equation}
+			t_\m{reor} = 
+			\int_{0}^{\infty} a_1 \cdot \exp\left( -\frac{\tau}{t_1} \right) + a_2 \cdot \exp\left( -\frac{\tau}{t_2} \right) \m{d}t = a_1 \cdot t_1 + a_2 \cdot t_2
+		\end{equation} 
+		%
+		the reorientation times were obtained as: $ t_\m{reor}^\m{SPC/E}=\SI{9.53}{\pico\second} $ and $ t_\m{reor}^\m{SPC/Fw}=\SI{5.30}{\pico\second} $. Comparing these values to the computed hydrogen bond life times presented in \autoref{sec:aggr} it can be concluded that water has no memory effect concerning interactions with itself because hydrogen bond breaking and dipole reorientation times are of the same order of magnitude.
+		%
+		\begin{figure}
+			\centering
+			\input{Graphen/rdyn.pgf}
+			\vspace{-20pt}
+			\caption{Dipole reorientation dynamics (solid lines) and biexponential fits (dashed lines).}
+			\label{fig:rdyn}
+		\end{figure}
+		%
+\section{Conclusion}
+%
+	Summarizing the results of the performed structural and dynamical analyses it has to be mentioned that SPC/E and SPC/Fw yield similar results for the investigated properties except for the power spectra. The former one as well as SPC/FQ cannot access properties that are related to intramolecular vibrations due to their rigid nature. Besides that, SPC/E and SPC/Fw perform overall well and are reasonably close to experiment as opposed to the SPC/FQ model that fails to display important interactions in water correctly. When discussing the right model for a water simulation, SPC/FQ is also not recommended due to its computational cost that arises from the polarizable charges. Since SPC/Fw is more costly than SPC/E it should be the model of choice only if intramolecular vibrations are explicitly required. In any other cases, employing SPC/E is recommended, especially for larger systems.
+	%
+\newpage
+\printbibliography[title={Literature}]
+%
+\end{document}
