@@ -1550,3 +1550,186 @@
   title = {NIST Chemistry WebBook},
   url   = {https://webbook.nist.gov/chemistry/}
 }
+
+@misc{turbomole1,
+  title = {{TURBOMOLE V7.4.1 2019}, a development of {University of Karlsruhe} and {Forschungszentrum Karlsruhe GmbH}, 1989-2007, {TURBOMOLE GmbH}, since 2007; available from \url{https://www.turbomole.org}.},
+}
+
+@article{turbomole2,
+  author    = {Sree Ganesh Balasubramani and Guo P. Chen and Sonia Coriani and Michael Diedenhofen and Marius S. Frank and Yannick J. Franzke and Filipp Furche and Robin Grotjahn and Michael E. Harding and Christof Hättig and Arnim Hellweg and Benjamin Helmich-Paris and Christof Holzer and Uwe Huniar and Martin Kaupp and Alireza Marefat Khah and Sarah Karbalaei Khani and Thomas Müller and Fabian Mack and Brian D. Nguyen and Shane M. Parker and Eva Perlt and Dmitrij Rappoport and Kevin Reiter and Saswata Roy and Matthias Rückert and Gunnar Schmitz and Marek Sierka and Enrico Tapavicza and David P. Tew and Christoph van Wüllen and Vamsee K. Voora and Florian Weigend and Artur Wody{\'{n}}ski and Jason M. Yu},
+  journal   = {J. Chem. Phys.},
+  title     = {{TURBOMOLE}: Modular program suite for ab initio quantum-chemical and condensed-matter simulations},
+  year      = {2020},
+  month     = {5},
+  number    = {18},
+  pages     = {184107},
+  volume    = {152},
+  doi       = {10.1063/5.0004635},
+  publisher = {{AIP} Publishing},
+}
+
+@article{tpss,
+ abstract = {The electron density, its gradient, and the Kohn-Sham orbital kinetic energy density are the local ingredients of a meta-generalized gradient approximation (meta-GGA). We construct a meta-GGA density functional for the exchange-correlation energy that satisfies exact constraints without empirical parameters. The exchange and correlation terms respect two paradigms: one- or two-electron densities and slowly varying densities, and so describe both molecules and solids with high accuracy, as shown by extensive numerical tests. This functional completes the third rung of {\textquotedbl}Jacob's ladder{\textquotedbl} of approximations, above the local spin density and GGA rungs.},
+ author = {Tao, Jianmin and Perdew, John P. and Staroverov, Viktor N. and Scuseria, Gustavo E.},
+ year = {2003},
+ title = {Climbing the density functional ladder: nonempirical meta-generalized gradient approximation designed for molecules and solids},
+ pages = {146401},
+ pagination = {page},
+ volume = {91},
+ number = {14},
+ journal = {Phys. Rev. Lett.},
+ doi = {10.1103/PhysRevLett.91.146401},
+ file = {http://www.ncbi.nlm.nih.gov/pubmed/14611541}
+}
+
+@article{gcp,
+  author    = {Holger Kruse and Stefan Grimme},
+  journal   = {J. Chem. Phys.},
+  title     = {A geometrical correction for the inter- and intra-molecular basis set superposition error in Hartree-Fock and density functional theory calculations for large systems},
+  year      = {2012},
+  month     = {4},
+  number    = {15},
+  pages     = {154101},
+  volume    = {136},
+  doi       = {10.1063/1.3700154},
+  publisher = {{AIP} Publishing},
+}
+
+% DFT-D3
+@article{dftd3,
+  author     = {Grimme, Stefan and Antony, Jens and Ehrlich, Stephan and Krieg, Helge},
+  journal    = {J. Chem. Phys.},
+  title      = {A consistent and accurate ab initio parametrization of density functional dispersion correction (DFT-D) for the 94 elements H-Pu},
+  year       = {2010},
+  number     = {15},
+  pages      = {154104},
+  volume     = {132},
+  abstract   = {The method of dispersion correction as an add-on to standard Kohn-Sham density functional theory (DFT-D) has been refined regarding higher accuracy, broader range of applicability, and less empiricism. The main new ingredients are atom-pairwise specific dispersion coefficients and cutoff radii that are both computed from first principles. The coefficients for new eighth-order dispersion terms are computed using established recursion relations. System (geometry) dependent information is used for the first time in a DFT-D type approach by employing the new concept of fractional coordination numbers (CN). They are used to interpolate between dispersion coefficients of atoms in different chemical environments. The method only requires adjustment of two global parameters for each density functional, is asymptotically exact for a gas of weakly interacting neutral atoms, and easily allows the computation of atomic forces. Three-body nonadditivity terms are considered. The method has been assessed on standard benchmark sets for inter- and intramolecular noncovalent interactions with a particular emphasis on a consistent description of light and heavy element systems. The mean absolute deviations for the S22 benchmark set of noncovalent interactions for 11 standard density functionals decrease by 15{\%}-40{\%} compared to the previous (already accurate) DFT-D version. Spectacular improvements are found for a tripeptide-folding model and all tested metallic systems. The rectification of the long-range behavior and the use of more accurate C(6) coefficients also lead to a much better description of large (infinite) systems as shown for graphene sheets and the adsorption of benzene on an Ag(111) surface. For graphene it is found that the inclusion of three-body terms substantially (by about 10{\%}) weakens the interlayer binding. We propose the revised DFT-D method as a general tool for the computation of the dispersion energy in molecules and solids of any kind with DFT and related (low-cost) electronic structure methods for large systems.},
+  doi        = {10.1063/1.3382344},
+  file       = {http://www.ncbi.nlm.nih.gov/pubmed/20423165},
+  pagination = {page},
+}
+
+% cite together with dftd3
+@article{dftd3-bj,
+  author     = {Grimme, Stefan and Ehrlich, Stephan and Goerigk, Lars},
+  journal    = {J. Comput. Chem.},
+  title      = {Effect of the damping function in dispersion corrected density functional theory},
+  year       = {2011},
+  number     = {7},
+  pages      = {1456--1465},
+  volume     = {32},
+  doi        = {10.1002/jcc.21759},
+  pagination = {page},
+}
+
+@article{def2-tzvp,
+  author     = {Weigend, Florian and Ahlrichs, Reinhart},
+  journal    = {Phys. Chem. Chem. Phys.},
+  title      = {Balanced basis sets of split valence, triple zeta valence and quadruple zeta valence quality for H to Rn: Design and assessment of accuracy},
+  year       = {2005},
+  number     = {18},
+  pages      = {3297--3305},
+  volume     = {7},
+  abstract   = {Gaussian basis sets of quadruple zeta valence quality for Rb-Rn are presented, as well as bases of split valence and triple zeta valence quality for H-Rn. The latter were obtained by (partly) modifying bases developed previously. A large set of more than 300 molecules representing (nearly) all elements-except lanthanides-in their common oxidation states was used to assess the quality of the bases all across the periodic table. Quantities investigated were atomization energies, dipole moments and structure parameters for Hartree-Fock, density functional theory and correlated methods, for which we had chosen M{\o}ller-Plesset perturbation theory as an example. Finally recommendations are given which type of basis set is used best for a certain level of theory and a desired quality of results.},
+  doi        = {10.1039/B508541A},
+  file       = {http://www.ncbi.nlm.nih.gov/pubmed/16240044},
+  pagination = {page},
+}
+
+% GFN2-xTB
+@article{gfn2-xtb,
+  author    = {Christoph Bannwarth and Sebastian Ehlert and Stefan Grimme},
+  journal   = {J. Chem. Theory Comput.},
+  title     = {{GFN}2-{xTB}{\textemdash}An Accurate and Broadly Parametrized Self-Consistent Tight-Binding Quantum Chemical Method with Multipole Electrostatics and Density-Dependent Dispersion Contributions},
+  year      = {2019},
+  month     = {2},
+  number    = {3},
+  pages     = {1652--1671},
+  volume    = {15},
+  doi       = {10.1021/acs.jctc.8b01176},
+  publisher = {American Chemical Society ({ACS})},
+}
+
+@book{cosmotherm,
+  author    = {Frank Eckert and Andreas Klamt},
+  publisher = {COSMOlogic GmbH \& Co. KG},
+  title     = {COSMOtherm, Version C30-1601 (revision 2299), release 16.01},
+  year      = {2016},
+  address   = {Leverkusen (Germany)},
+}
+
+@article{podeszwa2005accurate,
+  title={Accurate interaction energies for argon, krypton, and benzene dimers from perturbation theory based on the Kohn--Sham model},
+  author={Podeszwa, Rafa{\l} and Szalewicz, Krzysztof},
+  journal={Chemical physics letters},
+  volume={412},
+  number={4-6},
+  pages={488--493},
+  year={2005},
+  publisher={Elsevier}
+}
+
+@article{schutz1997water,
+  title={The water dimer interaction energy: Convergence to the basis set limit at the correlated level},
+  author={Sch{\"u}tz, Martin and Brdarski, Steve and Widmark, Per-Olof and Lindh, Roland and Karlstr{\"o}m, Gunnar},
+  journal={The Journal of chemical physics},
+  volume={107},
+  number={12},
+  pages={4597--4605},
+  year={1997},
+  publisher={American Institute of Physics}
+}
+
+@article{vasp1,
+  author  = {Kendall, Rick A. and Dunning, Thom H. and Harrison, Robert J.},
+  journal = {J. Chem. Phys.},
+  title   = {Electron affinities of the first-row atoms revisited. Systematic basis sets and wave functions},
+  year    = {1992},
+  pages   = {6796-6806},
+  volume  = {96},
+  doi     = {10.1063/1.462569},
+}
+
+@Article{vasp2,
+  author   = {G. Kresse and J. Furthmüller},
+  journal  = {Comput. Mater. Sci.},
+  title    = {Efficiency of ab-initio total energy calculations for metals and semiconductors using a plane-wave basis set},
+  year     = {1996},
+  issn     = {0927-0256},
+  number   = {1},
+  pages    = {15-50},
+  volume   = {6},
+  abstract = {We present a detailed description and comparison of algorithms for performing ab-initio quantum-mechanical calculations using pseudopotentials and a plane-wave basis set. We will discuss: (a) partial occupancies within the framework of the linear tetrahedron method and the finite temperature density-functional theory, (b) iterative methods for the diagonalization of the Kohn-Sham Hamiltonian and a discussion of an efficient iterative method based on the ideas of Pulay's residual minimization, which is close to an order Natoms2 scaling even for relatively large systems, (c) efficient Broyden-like and Pulay-like mixing methods for the charge density including a new special ‘preconditioning’ optimized for a plane-wave basis set, (d) conjugate gradient methods for minimizing the electronic free energy with respect to all degrees of freedom simultaneously. We have implemented these algorithms within a powerful package called VAMP (Vienna ab-initio molecular-dynamics package). The program and the techniques have been used successfully for a large number of different systems (liquid and amorphous semiconductors, liquid simple and transition metals, metallic and semi-conducting surfaces, phonons in simple metals, transition metals and semiconductors) and turned out to be very reliable.},
+  doi      = {https://doi.org/10.1016/0927-0256(96)00008-0},
+  url      = {https://www.sciencedirect.com/science/article/pii/0927025696000080},
+}
+
+@article{vasp3,
+  author    = {Kresse, G. and Furthm\"uller, J.},
+  journal   = {Phys. Rev. B},
+  title     = {Efficient iterative schemes for ab initio total-energy calculations using a plane-wave basis set},
+  year      = {1996},
+  month     = {10},
+  pages     = {11169--11186},
+  volume    = {54},
+  doi       = {10.1103/PhysRevB.54.11169},
+  issue     = {16},
+  numpages  = {0},
+  publisher = {American Physical Society},
+  url       = {https://link.aps.org/doi/10.1103/PhysRevB.54.11169},
+}
+
+@article{dftb3,
+  author    = {Michael Gaus and Qiang Cui and Marcus Elstner},
+  journal   = {J. Chem. Theory Comput.},
+  title     = {{DFTB}3: Extension of the Self-Consistent-Charge Density-Functional Tight-Binding Method ({SCC}-{DFTB})},
+  year      = {2011},
+  month     = {3},
+  note      = {DFTB3},
+  number    = {4},
+  pages     = {931--948},
+  volume    = {7},
+  doi       = {10.1021/ct100684s},
+  publisher = {American Chemical Society ({ACS})},
+}

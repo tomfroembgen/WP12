@@ -1,3 +1,4 @@
+# Latex Files
 *.aux
 *.bbl
 *.bcf
@@ -8,9 +9,11 @@
 *.out
 *.run.xml
 *.synctex.gz
-*.lmp
-*.DAT
-*.LOG
+*.toc
+
+# WP12 stuff
 2_grimme/ex*
 1_kirchner/spc*
+
+# Jupyter Notebook stuff
 */.ipynb_checkpoints
