@@ -1,0 +1,128 @@
+\documentclass[a4paper,12pt]{scrartcl} 
+
+%Beginn Präambel
+\usepackage[english]{babel} %Deutsche Einstelungen
+\usepackage[utf8]{inputenc} %utf-8 Eingabe
+\usepackage[T1]{fontenc} % Korrekte Aufgabefonds im Aufabedokument
+\usepackage{csquotes} %Anführungsstriche mit \enquote{text}
+\linespread{1.3}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{Graphen/}}
+\usepackage{siunitx}
+\sisetup{locale = US}
+\usepackage{placeins}
+\usepackage{adjustbox}
+\usepackage[version=4,arrows=pgf]{mhchem}
+\usepackage{float}
+\usepackage[backend=biber,style=chem-angew,sorting=none]{biblatex}
+\addbibresource{literatur.bib}
+\usepackage{blindtext}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+\usepackage[a4paper, lmargin={2cm}, rmargin={2cm}, tmargin={2cm}, bmargin={2cm}]{geometry}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+\hypersetup{pdfstartview=FitH, pdfauthor=Tom Frömbgen}
+\usepackage[headsepline]{scrlayer-scrpage}
+\setlength{\headheight}{18.851pt}
+\setlength{\footheight}{18.851pt}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{WP 12}
+\chead{Theoretical Methods for Condensed Matter}
+\ohead{Part III}
+\ofoot{\pagemark}
+
+
+
+% Neue Kommandos
+\newcommand{\tb}{\textbackslash}
+\newcommand{\tf}{\textbf}
+\newcommand{\x}{\chi}
+\newcommand{\xm}{\chi_ \m{M}}
+\newcommand{\dxm}{\Delta\chi_\m{M}}
+%\newcommand{\chapref}[1]{Chapter~\ref{#1}}
+%\newcommand{\secref}[1]{Section~\ref{#1}}
+%\newcommand{\tabref}[1]{Table~\ref{#1}}
+%\newcommand{\figref}[1]{Figure~\ref{#1}}
+\newcommand{\m}[1]{\mathrm{#1}}
+\renewcommand{\arraystretch}{1.0}
+\newcommand{\leadingzero}[1]{\ifnum #1<10 0\the#1\else\the#1\fi}
+\newcommand{\euler}{\m{e}}
+\newcommand{\imag}{\m{i}}
+\newcommand{\nt}{\noindent}
+\newcommand{\sub}{\textsubscript}
+\newcommand{\super}{\textsuperscript}
+
+
+\begin{document}
+%
+\thispagestyle{empty}
+
+%
+\begin{center}
+	\begin{LARGE}
+		\vspace{50mm}
+		\textbf{WP12} \\
+		\vspace{15mm}
+		\textbf{Theoretical Methods for Condensed Matter} \\
+		\vspace{15mm}
+		\textbf{Part III} \\
+		\vspace{30mm}
+	\end{LARGE}
+	\begin{large}
+		Tom Frömbgen \\
+		\vspace{20mm}
+		Assistants: Katharina Bauerfeind \& Berenike Stahl  \\
+		\vspace{10mm}
+		Submission 1: \today \\
+		\vspace{5mm}
+		%		Submission 2:  \today
+	\end{large}
+\end{center}
+
+%
+%\newpage
+%\thispagestyle{empty}
+%\tableofcontents
+%
+\newpage
+\pagenumbering{arabic}
+\section{Bulk Properties}
+%
+\begin{figure}
+	\centering
+	\input{Graphen/pdos.pgf}
+	\vspace{-20pt}
+	\caption{Projected density of states of NaCl on a PBE0/POB-TZVP level of theory with standard (left) and optimal Fock exchange fraction (right).}
+	\label{fig:pdos}
+\end{figure}
+
+\section{Calculating surfaces}
+%
+\begin{figure}
+	\centering
+	\input{Graphen/dz.pgf}
+	\vspace{-20pt}
+	\caption{Relaxation of symmetry-inequivalent atoms in $ \ce{TiO2} $ (110) surfaces of different thickness: Atoms in the topmost layer (left) are compared to bulk-like atoms in middle layers (right).}
+	\label{fig:dz}
+\end{figure}
+%
+\begin{figure}
+	\centering
+	\input{Graphen/slab.pgf}
+	\vspace{-20pt}
+	\caption{Calculated surface energies for different $ \ce{TiO2} $ surfaces.}
+	\label{fig:slab}
+\end{figure}
+%
+\newpage
+\printbibliography[title={Literature}]
+%
+\end{document}

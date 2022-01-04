@@ -344,7 +344,7 @@
 \pgftext[x=0.451618in,y=3.499200in,left,base]{\rmfamily\fontsize{8.000000}{9.600000}\selectfont \(\displaystyle 0.2\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=0.304241in,y=2.171048in,,bottom,rotate=90.000000]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \Delta z / \AA\)}%
+\pgftext[x=0.304241in,y=2.171048in,,bottom,rotate=90.000000]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle \Delta z / \AA \)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{0.699692in}{0.524170in}}{\pgfqpoint{2.523812in}{3.293757in}} %
