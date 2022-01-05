@@ -17,3 +17,6 @@
 
 # Jupyter Notebook stuff
 */.ipynb_checkpoints
+
+# VSCode stuff
+*/.vscode/*
