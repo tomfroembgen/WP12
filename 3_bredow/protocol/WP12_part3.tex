@@ -96,31 +96,144 @@
 \pagenumbering{arabic}
 \section{Bulk Properties of NaCl}
 %
-As part of this practical computational course, bulk properties of sodium chloride such as lattice parameters, atomization energies, band gaps and densities of states were computed. An experimental crystal structure of sodium chloride was taken from the Crystallography Open Database \textbf{LIT} (COD-ID: 9006369). This specific structure was chosen as experimental input because it was measured at $ \SI{298}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
+As part of this practical computational course, bulk properties of sodium chloride such as lattice parameters, atomization energies, band gaps and densities of states were computed. All calculations were performed using the \textsc{Crystal} program package.\autocite[]{crystal-1, crystal-2} An experimental crystal structure of sodium chloride was taken from the Crystallography Open Database\autocite[]{cod} (COD-ID: 9006369). This specific structure was chosen as experimental input because it was measured at $ \SI{298}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
 %
 \subsection{Structural relaxation}
 %
-Full structural relaxations on the LDA/VWN, PWGGA, M06L and PBE0 level of theory employing \textit{double}-$\zeta$ basis sets developed by M. Peintinger et al. \textbf{LIT} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. The latter hybrid functional comes with a largely increased computation time which is about four times larger compared to the other functionals. In conclusion, it can be said that reasonable geometries do not require the use of hybrid functionals but can also be obtained from certain GGA functionals. This is also well known for geometry optimization of molecules. \textbf{LIT}
+Full structural relaxations on the LDA/VWN\autocite[]{lda-vwn}, PWGGA\autocite[]{pwgga}, M06L\autocite[]{m06l} and PBE0\autocite[]{pbe0} level of theory employing POB-DZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. The latter hybrid functional comes with a largely increased computation time which is about four times larger compared to the other functionals. In conclusion, it can be said that reasonable geometries do not require the use of hybrid functionals but can also be obtained from certain (meta-)GGA functionals. This is also well known for geometry optimization of molecules.\autocite[]{tpss,r2-scan-3c}
 %
-\subsection{Structural relaxation}
+\begin{table}[H]
+	\centering
+	\captionabove{Full structural relaxations of NaCl: Functional, computational time (min), lattice parameter $ a $ ($ \si[]{\angstrom} $), deviation from experimental value $ \Delta a $ ($ \si[]{\percent} $)}
+	\label{tab:nacl-relax}
+	\begin{tabular}{lccc}
+		\toprule
+		Functional & comp time & $a $  & $ \Delta a $ \\
+		\midrule
+		LDA/VWN    & 3.04      & 5.410 & -3.28        \\
+		M06L       & 3.12      & 5.492 & -1.82        \\
+		PBE0       & 16.2      & 5.573 & -0.37        \\
+		PWGGA      & 3.26      & 5.614 & 0.37         \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 %
-The atomization energy of sodium chloride was computed employing PBE0 and \textit{triple}-$\zeta$ basis sets developed by M. Peintinger et al. To do so, the atomic basis sets were converged to a limit of $ \SI{1}{kcal \per \mole} $ by adding \textit{s, p} and \textit{d} shells. Having reached the desired convergence, an atomization energy of $ \SI{623.3}{kJ \per \mole} $ was obtained as displayed in \autoref{tab:nacl-atom}. This value represents an electronic energy and cannot be directly compared to an experimental quantity which is usually the atomization enthalpy $ \Delta \mathrm{H^{0}_{atom}(NaCl)} $. Comparison is achieved according to the Born--Haber circle by adding the sublimation enthalpy of sodium $ \Delta \mathrm{H^{0}_{subl}(Na)} = \SI{107.3}{kJ \per \mole} $ and half of the dissociation enthalpy of chlorine $ \Delta \mathrm{H^{0}_{diss}(Cl_2)} = \SI{121.3}{kJ \per \mole}  $ to the enthalpy of formation $ \Delta \mathrm{_f H^{0}_{solid}(NaCl)} = \SI{-411.1}{kJ \per \mole}$ (all values taken from the NIST chemistry webbook \textbf{LIT}):
+\subsection{Atomization energy}
+%
+The atomization energy of sodium chloride was computed employing PBE0 and POB-TZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2}. To do so, the atomic basis sets were enlarged by adding \textit{s, p} and \textit{d} shells until the atomic energies $ E_\mathrm{Na}, E_\mathrm{Cl} $ were converged to a limit of $ \SI{1}{kcal \per \mole} $. Having reached the desired convergence, an atomization energy $ \Delta E_\mathrm{NaCl}^\mathrm{atom} $ of $\SI{623.3}{kJ \per \mole} $ was obtained according to
 %
 \begin{equation}
-	\Delta \mathrm{H^{0}_{atom}(NaCl)} = \Delta \mathrm{_f H^{0}_{solid}(NaCl)} + \frac{1}{2}\Delta \mathrm{H^{0}_{diss}(Cl_2)} + \Delta \mathrm{H^{0}_{subl}(Na)}
+	\Delta E_\mathrm{NaCl}^\mathrm{atom} = E_\mathrm{NaCl} - E_\mathrm{Na} - E_\mathrm{Cl}
 \end{equation}
 %
-\begin{figure}
+as displayed in \autoref{tab:nacl-atom}. This value represents an electronic energy and cannot be directly compared to an experimental quantity which is usually the atomization enthalpy $ \Delta \mathrm{H^{0}_{atom}(NaCl)} $. Comparison is achieved according to the Born--Haber circle by adding the sublimation enthalpy of sodium $ \Delta \mathrm{H^{0}_{subl}(Na)} = \SI{107.3}{kJ \per \mole} $ and half of the dissociation enthalpy of chlorine $ \Delta \mathrm{H^{0}_{diss}(Cl_2)} = \SI{121.3}{kJ \per \mole}  $ to the negative enthalpy of formation of sodium chloride $ \Delta \mathrm{_f H^{0}_{solid}(NaCl)} = \SI{-411.1}{kJ \per \mole}$ (all values taken from the NIST chemistry webbook\autocite[]{nist}):
+%
+\begin{equation}
+	\Delta \mathrm{H^{0}_{atom}(NaCl)} = - \Delta \mathrm{_f H^{0}_{solid}(NaCl)} + \frac{1}{2}\Delta \mathrm{H^{0}_{diss}(Cl_2)} + \Delta \mathrm{H^{0}_{subl}(Na)}
+\end{equation}
+%
+This results in $ \Delta \mathrm{H^{0}_{atom}(NaCl)} = \SI{639.7}{\kilo\joule\per\mole}$. The atomization energy differs from that by $ \SI{-2.5}{\percent} $ which is deduced to the fact that atomization energy and enthalpy are per definition not identical. Thermal corrections need to be added to make the values comparable.
+%
+\begin{table}
+	\centering
+	\captionabove{Energies of a sodium $ E_\mathrm{Na} $ and chlorine $ E_\mathrm{Cl} $ atom, sodium chloride $ E_\mathrm{NaCl} $ (all in $ \si[]{\hartree} $) and the atomization energy of sodium chloride $ \Delta E_\mathrm{NaCl}^\mathrm{atom} $ ($ \si[]{kJ \per \mole} $).}
+	\label{tab:nacl-atom}
+	\begin{tabular}{lccc}
+		\toprule
+		$ E_\mathrm{Na} $ & $ E_\mathrm{Na} $ & $ E_\mathrm{NaCl} $ & $ \Delta E_\mathrm{NaCl}^\mathrm{atom} $ \\
+		\midrule
+		-162.17           & -459.98           & -622.39             & 623.34                                   \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+\subsection{Band gap}
+%
+Band gaps of sodium chloride were computed on a PW1PW\autocite[]{pw1pw}/POB-TZVP\autocite[]{pob-xzvp}, PBE0/POB-TZVP, and PBE0/mTZVP\autocite[]{mtzvp} level of theory. The band gaps were first calculated with the standard amount of Fock exchange $ \alpha $ included in the respective functionals. Subsequently, self-consistent hybrid calculations were performed in order to determine the optimal amount of Fock exchange. Having obtained this information, band gaps were computed using the optimal amount of Fock exchange. Results are summarized in \autoref{tab:nacl-bandgap}. Note that the inverse of $ \alpha $ corresponds to the dielectric constant $ \varepsilon $.
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Calculated band gaps of sodium chloride ($ \si[]{\electronvolt} $), amount of Fock exchange $ \alpha $ and dielectric constant $ \varepsilon $.}
+	\label{tab:nacl-bandgap}
+	\begin{tabular}{lccc}
+		\toprule
+		Method         & Band gap & $ \alpha $ & $ \varepsilon $ \\
+		\midrule
+		PBE0/mTZVP     & 7.28     & 0.25       & 4.00            \\
+		PBE0/mTZVP     & 8.89     & 0.49       & 2.05            \\
+		PBE0/POB-TZVP  & 7.66     & 0.25       & 4.00            \\
+		PBE0/POB-TZVP  & 9.51     & 0.46       & 2.18            \\
+		PW1PW/POB-TZVP & 7.23     & 0.20       & 5.00            \\
+		PW1PW/POB-TZVP & 9.50     & 0.46       & 2.19            \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+During the past six decades, numerous experimental band gaps have been reported in the literature\autocite[]{nacl-bandgaps} mostly ranging from 8.4 to $ \SI{9.0}{\electronvolt}$. It can be seen that the quality of the calculated band gaps significantly increases upon using the optimized amount of Fock exchange. While all tested method with standard amount of Fock exchange underestimate the experimental band gaps, PBE0/mTZVP with an optimal amount of Fock exchange is well in the range of the reported reference values. However, PBE0/POB-TZVP and PW1PW/POB-TZVP with an optimal amount of Fock exchange overestimate the band gap but not as much as it was underestimated before. Hence, an mTZVP seems to be more suitable for this kind of calculation. A reason might be found in the missing diffuse functions in POB-TZVP in order to avoid linear dependencies in solid state calculations. Despite the increased accuracy, one has to keep the rather large computational effort of self-consistent hybrid calculations in mind.
+%
+\subsection{Projected density of states}
+%
+The projected density of states (PDOS) of sodium chloride was computed on a PBE0/POB-TZVP level of theory with standard and optimal amount of Fock exchange (as given in \autoref{tab:nacl-bandgap}). It is displayed in \autoref{fig:pdos}.
+%
+\begin{figure}[H]
 	\centering
 	\input{Graphen/pdos.pgf}
 	\vspace{-20pt}
-	\caption{Projected density of states of NaCl on a PBE0/POB-TZVP level of theory with standard (left) and optimal Fock exchange fraction (right).}
+	\caption{Projected density of states of NaCl on a PBE0/POB-TZVP level of theory with standard (left) and optimal Fock exchange fraction (right) obtained by a self-consistent hybrid calculation (see \autoref{tab:nacl-bandgap}).}
 	\label{fig:pdos}
 \end{figure}
-
+%
+Generally, both PDOS plots look quite similar. The unoccupied crystal orbitals in the conduction band of the PDOS with optimal amount of Fock exchange are shifted to the right by $ \SI{1.9}{\electronvolt} $ as compared to the other one due to the larger band gap. In both cases, the valence band is dominated by chlorine and whereas sodium dominates the lower energy part of the conduction band. By that, in can be concluded that the highest occupied crystal orbital (HOCO) is mainly chlorine-centered and the lowest unoccupied crystal orbital (LUCO) is mainly sodium-centered. This observation is in line with the common understanding of the ionic sodium chloride crystal: Sodium donates its atoms to chlorine and is therefore present as $ \ce{Na^+} $, whereas chlorine forms $ \ce{Cl^-} $. Due to the electron deficient nature of the $ \ce{Na^+} $ it is straight forward that its orbitals are higher in energy than those of the electron rich $ \ce{Cl^-} $ anion.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Calculating surfaces of Rutile}
 %
-\begin{figure}
+The second part of this course dealt with the investigation of low-index rutile $ \ce{TiO2}$ surfaces including structural relaxations, slab models and surface energies as well as a Wulff construction. All calculations were performed using the \textsc{Crystal} program package. The Wulff construction was done with \textsc{Vesta}\autocite[]{vesta}. An experimental crystal structure of rutile was taken from the Crystallography Open Database (COD-ID: 9004141). This specific structure was chosen as experimental input because it was measured at $ \SI{25}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
+%
+\subsection{Structural relaxation}
+%
+Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW1PW level of theory employing POB-TZVP-rev2 (rev2) and the \textsc{Crystal} standard (std) basis sets were performed. Results are summarized in \autoref{tab:tio2-relax}.
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Full relaxations of rutile: Method, computation time (min), lattice parameter $ a,c $ ($\si[]{\angstrom} $) and their deviation from experiment $ \Delta a, \Delta c $ ($ \si[]{\percent} $) as well as the fractional $x$ coordinate of oxygen.}
+	\label{tab:tio2-relax}
+	\begin{tabular}{lcccccc}
+		\toprule
+		Method      & comp time & $a$   & $\Delta a $ & $c$   & $\Delta c$ & $x_\mathrm{frac} \mathrm{(O)}$ \\
+		\midrule
+		PBE0/rev2   & 344.76    & 4.578 & -0.33       & 2.951 & -0.28      & 0.305                          \\
+		PBESOL/rev2 & 19.01     & 4.589 & -0.08       & 2.946 & -0.42      & 0.304                          \\
+		PW1PW/rev2  & 328.13    & 4.585 & -0.18       & 2.953 & -0.2       & 0.305                          \\
+		PWGGA/rev2  & 57.42     & 4.634 & 0.89        & 2.969 & 0.34       & 0.305                          \\
+		PBE0/std    & 184.25    & 4.565 & -0.62       & 2.981 & 0.74       & 0.304                          \\
+		PBESOL/std  & 13.97     & 4.577 & -0.35       & 2.970 & 0.39       & 0.304                          \\
+		PW1PW/std   & 219.18    & 4.571 & -0.47       & 2.982 & 0.77       & 0.304                          \\
+		PWGGA/std   & 23.77     & 4.617 & 0.51        & 2.993 & 1.16       & 0.304                          \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+\subsection{Surface energy}
+%
+\begin{table}[H]
+	\centering
+	\captionabove{Surface energies of rutile: Surface, number of layers $n$, energies computed with PBESOL and PW1PW $ E_\mathrm{PBESOL}, E_\mathrm{PW1PW} $ (in $\si{\joule\per m\squared}$).}
+	\label{tab:tio2-pw1pw-compare}
+	\begin{tabular}{lccc}
+		\toprule
+		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ \\
+		\midrule
+		001       & 8 & 1.411     & 1.407    \\
+		100     & 7 & 0.935     & 0.852    \\
+		101     & 7 & 1.237     & 1.231    \\
+		110     & 7 & 0.722     & 0.659    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+\begin{figure}[H]
 	\centering
 	\input{Graphen/dz.pgf}
 	\vspace{-20pt}
@@ -128,12 +241,22 @@ The atomization energy of sodium chloride was computed employing PBE0 and \texti
 	\label{fig:dz}
 \end{figure}
 %
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\input{Graphen/slab.pgf}
 	\vspace{-20pt}
 	\caption{Calculated surface energies for different $ \ce{TiO2} $ surfaces.}
 	\label{fig:slab}
+\end{figure}
+%
+\subsection{Crystal shape}
+%
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{wulff_construction_tio2.png}
+	\includegraphics[width=0.4\textwidth]{rutile_exp.png}
+	\caption{Crystal shape of rutile: Wulff construction based on the calculated surface energies (left) and experimental data\autocite[]{rutile-shape} (right).}
+	\label{fig:wulff}
 \end{figure}
 %
 \newpage
