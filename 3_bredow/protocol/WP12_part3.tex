@@ -194,6 +194,8 @@ The second part of this course dealt with the investigation of low-index rutile 
 \subsection{Structural relaxation}
 %
 Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW1PW level of theory employing POB-TZVP-rev2 (rev2) and the \textsc{Crystal} standard (std) basis sets were performed. Results are summarized in \autoref{tab:tio2-relax}.
+
+All tested methods give reasonable results for the lattice parameters $ a, c $ since they are - except for PWGGA/std at $ c $ - within $ \SI{1}{\percent} $ accuracy compared to the reference data of $ a_\mathrm{exp} = \SI{4.593}{\angstrom} $ and $ c_\mathrm{exp} = \SI{2.959}{\angstrom} $. There are some general trends observable: rev2 results are more accurate than std results which justifies the usage of the former basis sets instead of the \textsc{Crystal} default basis sets. The PWGGA functional is too repulsive and results in too large lattice parameters for both basis sets. The other GGA functional PBESOL yields better results and slightly underestimates the lattice parameters, except for $ c $ with the worse std basis sets. In contrast to that, the two investigated hybrid functionals do not perform systematically better than their GGA competitors. Instead, they perform even worse than PBESOL in most cases. Taking a look at the computed fractional $ x $ coordinates of the oxygen atoms, all investigated methods obtain identical results. The differences are very small and negligible. The observation that hybrid functionals do not happen to be necessarily better than GGA functionals with regard to geometry optimizations was also found for NaCl and discussed before - especially, when noting the largely increased computation times. 
 %
 \begin{table}[H]
 	\centering
@@ -217,29 +219,39 @@ Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW
 %
 \subsection{Surface energy}
 %
+Having received the information that PBESOL/rev2 is an accurate and cheap level of theory for geometry optimizations of rutile, low-index surfaces of rutile were investigated with this method. Surfaces were generated with the \textit{SLABCUT} option and specified by the parameters $ L, S $ which denote the starting layer and the number of atomic layers that form the surface, respectively. The surface slabs need to fulfill requirements in order to make the computation feasible. They
+%
+\begin{itemize}
+	\item must be symmetric and conserve the symmetry of the underlying crystal structure (rutile) \\
+	\item must be stoichiometric w.r.t the sum formula of the compound ($ \ce{TiO2} $) \\
+	\item must not possess a dipole moment in $ z $ direction (the surfaces are formally formed in the $ xy $ plane)
+\end{itemize}
+%
+Obeying these criteria, only certain values for $ L, S $ are possible. These are depicted in \autoref{tab:tio2-ls}.
+%
 \begin{table}[H]
 	\centering
-	\captionabove{Surface energies of rutile: Surface, number of layers $n$, energies computed with PBESOL and PW1PW $ E_\mathrm{PBESOL}, E_\mathrm{PW1PW} $ (in $\si{\joule\per m\squared}$).}
-	\label{tab:tio2-pw1pw-compare}
-	\begin{tabular}{lccc}
+	\captionabove{Allowed values for $ L, S $ in the definition of slab models of low-index rutile surfaces ($ j \elem \mathbb{N}$).}
+	\label{tab:tio2-ls}
+	\begin{tabular}{lcc}
 		\toprule
-		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ \\
+		Surface & $ L $ & $ S $ \\
 		\midrule
-		001       & 8 & 1.411     & 1.407    \\
-		100     & 7 & 0.935     & 0.852    \\
-		101     & 7 & 1.237     & 1.231    \\
-		110     & 7 & 0.722     & 0.659    \\
+		001     & 1 & $j$  \\
+		100     & 2 & $3j$    \\
+		101     & 2 & $3j$    \\
+		110     & 2 & $3j$     \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 %
-\begin{figure}[H]
-	\centering
-	\input{Graphen/dz.pgf}
-	\vspace{-20pt}
-	\caption{Relaxation of symmetry-inequivalent atoms in $ \ce{TiO2} $ (110) surfaces of different thickness: Atoms in the topmost layer (left) are compared to bulk-like atoms in middle layers (right).}
-	\label{fig:dz}
-\end{figure}
+After having computed slab models consisting out of two to eight stoichiometric layers for the four given surfaces, the surface energy $ E_\mathrm{surf} $ can be obtained as
+%
+\begin{equation}
+	E_\mathrm{surf} (n) = \frac{E_\mathrm{slab}(n) - n \cdot E_\mathrm{bulk}}{2A}
+\end{equation}
+%
+where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The surface energy oscillates and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. Not that for reasons of technical difficulties the largest surface models contain seven or eight stoichiometric layers, depending on the investigated surface. In case of the (001) and (101) surface, both methods agree on the surface are. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
 %
 \begin{figure}[H]
 	\centering
@@ -249,7 +261,36 @@ Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW
 	\label{fig:slab}
 \end{figure}
 %
+\begin{table}[H]
+	\centering
+	\captionabove{Surface energies of rutile: Surface, number of layers $n$, energies computed with PBESOL and PW1PW $ E_\mathrm{PBESOL}, E_\mathrm{PW1PW} $ (in $\si{\joule\per m\squared}$).}
+	\label{tab:tio2-pw1pw-compare}
+	\begin{tabular}{lccc}
+		\toprule
+		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ \\
+		\midrule
+		001     & 8 & 1.411     & 1.407    \\
+		100     & 7 & 0.935     & 0.852    \\
+		101     & 7 & 1.237     & 1.231    \\
+		110     & 7 & 0.722     & 0.659    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+%
+Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the atoms in the topmost layer of the surface models first, it is observed that the oxygen atoms mainly move to larger distances whereas the titanium atoms show a negative $ \Delta z $. Again, oscillations of the values are observed. This means that the $ \ce{TiO6} $ octahedra are remarkably distorted at the borders of the surface models. In contrast to that, an entirely different behavior is observed for the bulk-like atoms in the middle of the surface models: The oxygen atoms nearly do not relax (except for $n=2$ because there are no bulk-like atoms) but stay close to their original positions. Instead, the titanium atoms heavily relax in an oscillating fashion. This leads to distortions of the $ \ce{TiO6} $ octahedra which are different to those at the topmost layers. The computed relaxations are in good agreement with the literature.\autocite{rutile-surface-energy}
+%
+\begin{figure}[H]
+	\centering
+	\input{Graphen/dz.pgf}
+	\vspace{-20pt}
+	\caption{Relaxation of symmetry-nonequivalent atoms in $ \ce{TiO2} $ (110) surfaces of different thickness: Atoms in the topmost layer (left) are compared to bulk-like atoms in middle layers (right).}
+	\label{fig:dz}
+\end{figure}
+%
 \subsection{Crystal shape}
+%
+Finally, the calculated surface energies are used to generate a graphical representation of the rutile crystal shape. According to Wulff's theorem, the length
+of a vector normal to a crystal face is proportional to its surface energy. Hence, knowing the surface energy of a sufficient number of surfaces enables a reliable representation of the crystal shape. The result is displayed in \autoref{fig:wulff} and compared to experimental data which are in nice agreement. Therefore, the presented approach to access surface energies and thereby the crystal shape are considered reasonable.
 %
 \begin{figure}[H]
 	\centering
