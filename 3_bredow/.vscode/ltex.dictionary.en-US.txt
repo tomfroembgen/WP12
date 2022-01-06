@@ -8,3 +8,10 @@ VWN
 PWGGA
 functionals
 Peintinger
+Frömbgen
+Bauerfeind
+Berenike
+webbook
+POB-TZVP
+Fock
+symmetry-inequivalent

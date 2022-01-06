@@ -388,7 +388,7 @@
 \pgftext[x=0.351998in,y=3.642800in,left,base]{\rmfamily\fontsize{8.000000}{9.600000}\selectfont \(\displaystyle 2.25\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
-\pgftext[x=0.296442in,y=2.171048in,,bottom,rotate=90.000000]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle E_\mathrm{surface} / \mathrm{Jm^{-2}}\)}%
+\pgftext[x=0.296442in,y=2.171048in,,bottom,rotate=90.000000]{\rmfamily\fontsize{10.000000}{12.000000}\selectfont \(\displaystyle E_\mathrm{surface}\) / \(\displaystyle \mathrm{Jm^{-2}}\)}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{0.659099in}{0.524170in}}{\pgfqpoint{5.836520in}{3.293757in}} %
