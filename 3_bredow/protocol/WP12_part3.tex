@@ -252,7 +252,7 @@ After having computed slab models consisting out of two to eight stoichiometric 
 	E_\mathrm{surf} (n) = \frac{E_\mathrm{slab}(n) - n \cdot E_\mathrm{bulk}}{2A}
 \end{equation}
 %
-where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The surface energy oscillates and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. Not that for reasons of technical difficulties the largest surface models contain seven or eight stoichiometric layers, depending on the investigated surface. In case of the (001) and (101) surface, both methods agree on the surface are. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
+where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The surface energy oscillates and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. In case of the (001) and (101) surface, both methods agree on the surface energy. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
 %
 \begin{figure}[H]
 	\centering
@@ -271,14 +271,16 @@ where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is 
 		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ \\
 		\midrule
 		001     & 8 & 1.411     & 1.407    \\
-		100     & 7 & 0.935     & 0.852    \\
-		101     & 7 & 1.237     & 1.231    \\
-		110     & 7 & 0.722     & 0.659    \\
+		100     & 8 & 0.935     & 0.845    \\
+		101     & 8 & 1.237     & 1.190    \\
+		110     & 8 & 0.722     & 0.592    \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 %
-Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the atoms in the topmost layer of the surface models first, it is observed that the oxygen atoms mainly move to larger distances whereas the titanium atoms show a negative $ \Delta z $. Again, oscillations of the values are observed. This means that the $ \ce{TiO6} $ octahedra are remarkably distorted at the borders of the surface models. In contrast to that, an entirely different behavior is observed for the bulk-like atoms in the middle of the surface models: The oxygen atoms nearly do not relax (except for $n=2$ because there are no bulk-like atoms) but stay close to their original positions. Instead, the titanium atoms heavily relax in an oscillating fashion. This leads to distortions of the $ \ce{TiO6} $ octahedra which are different to those at the topmost layers. The computed relaxations are in good agreement with the literature.\autocite{rutile-surface-energy}
+Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the three distinct atoms in the topmost layer of the surface models first, it is observed that the Ti3 atoms move to larger distances whereas the Ti2 atoms show a negative $ \Delta z $. The oxygen atoms mostly show a slightly positive relaxation. Again, oscillations of the values are observed. This means that the $ \ce{TiO6} $ octahedra are remarkably distorted at the borders of the surface models. 
+
+For Ti2 and Ti3, a similar behavior is observed for the bulk-like atoms in the middle of the surface models: These atoms show large oscillating relaxations counteracting each other. Opposed to that, the oxygen atoms nearly do not relax except for O4/5 at $n=3$ but stay close to their original positions. This leads to distortions of the $ \ce{TiO6} $ octahedra which are different to those at the topmost layers. The computed relaxations are in good agreement with the literature.\autocite{rutile-surface-energy}
 %
 \begin{figure}[H]
 	\centering
@@ -295,9 +297,11 @@ of a vector normal to a crystal face is proportional to its surface energy. Henc
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{wulff_construction_tio2.png}
+	\includegraphics[width=0.4\textwidth]{wulff_pbesol.png}
+	\includegraphics[width=0.4\textwidth]{wulff_pw1pw.png}
+	\includegraphics[width=0.4\textwidth]{wulff_theo_lit.png}
 	\includegraphics[width=0.4\textwidth]{rutile_exp.png}
-	\caption{Crystal shape of rutile: Wulff construction based on the calculated surface energies (left) and experimental data\autocite[]{rutile-shape} (right).}
+	\caption{Crystal shape of rutile: Wulff construction based on the surface energies calculated with PBESOL (top left), PW1PW (top right), theoretical literature\autocite[]{rutile-surface-energy} (bottom left) and comparison to experimental data\autocite[]{rutile-shape} (bottom right).}
 	\label{fig:wulff}
 \end{figure}
 %
