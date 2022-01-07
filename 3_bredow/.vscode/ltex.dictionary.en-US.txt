@@ -24,3 +24,5 @@ LUCO
 PBESOL
 Wulff
 anatase
+octahedra
+SLABCUT
