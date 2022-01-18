@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{scrartcl} 
+\documentclass[a4paper,12pt,parskip=half]{scrartcl} 
 
 %Beginn Präambel
 \usepackage[english]{babel} %Deutsche Einstelungen
@@ -27,7 +27,7 @@
 \setcounter{tocdepth}{2}
 \usepackage[a4paper, lmargin={2cm}, rmargin={2cm}, tmargin={2cm}, bmargin={2cm}]{geometry}
 \usepackage{url}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage[all]{hypcap}
 \hypersetup{pdfstartview=FitH, pdfauthor=Tom Frömbgen}
 \usepackage[headsepline]{scrlayer-scrpage}
@@ -97,13 +97,15 @@
 \pagenumbering{arabic}
 \section{Bulk Properties of NaCl}
 %
-As part of this practical computational course, bulk properties of sodium chloride such as lattice parameters, atomization energies, band gaps and densities of states were computed. All calculations were performed using the \textsc{Crystal} program package.\autocite[]{crystal-1, crystal-2} An experimental crystal structure of sodium chloride was taken from the Crystallography Open Database\autocite[]{cod} (COD-ID: 9006369). This specific structure was chosen as experimental input because it was measured at $ \SI{298}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
+As part of this practical computational course, bulk properties of sodium chloride such as lattice parameters, atomization energies, band gaps and densities of states were computed. All calculations were performed using the \textsc{Crystal} program package.\autocite[]{crystal-1, crystal-2} An experimental crystal structure of sodium chloride was taken from the Crystallography Open Database\autocite[]{cod} (COD-ID: 9006369). This specific structure was chosen as experimental input because it was measured at $ \SI{50}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
 %
 \subsection{Structural relaxation}
 %
-Full structural relaxations on the LDA/VWN\autocite[]{lda-vwn}, PWGGA\autocite[]{pwgga}, M06L\autocite[]{m06l} and PBE0\autocite[]{pbe0} level of theory employing POB-DZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. The latter hybrid functional comes with a largely increased computation time which is about four times larger compared to the other functionals. In conclusion, it can be said that reasonable geometries do not require the use of hybrid functionals but can also be obtained from certain (meta-)GGA functionals. This is also well known for geometry optimization of molecules.\autocite[]{tpss,r2-scan-3c}
+Full structural relaxations on the LDA/VWN\autocite[]{lda-vwn}, PWGGA\autocite[]{pwgga}, M06L\autocite[]{m06l} and PBE0\autocite[]{pbe0} level of theory employing POB-DZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. Noting the different levels used in this task -- namely LDA, GGA, meta-GGA and a hybrid functional which correspond to the levels one to four on Jacobs ladder of density functional theory -- it is unexpected that PWGGA and PBE0 representing rung two and four on Jacobs ladder, respectively yield results of the same quality whereas M06L belonging to rung three on Jacobs ladder performs worse. The good performance of PBE0 is expected as it is a high-quality method. GGA functionals as PWGGA are known to sometimes create metallic systems when computing insulators as NaCl. In this case, the unexpected good performance of PWGGA is probably due to fortuitous error cancellation of the functional and the small double-$ \zeta $ basis set. Such behavior was also observed in other computational lab courses. 
+The hybrid functional PBE0 comes with a largely increased computation time which is about four times larger compared to the other functionals. In conclusion, it can be said that reasonable geometries do not require the use of hybrid functionals but can also be obtained from certain (meta-)GGA functionals. This is also well known for geometry optimization of molecules.\autocite[]{tpss,r2-scan-3c}
+
 %
-\begin{table}[H]
+\begin{table}
 	\centering
 	\captionabove{Full structural relaxations of NaCl: Functional, computational time (min), lattice parameter $ a $ ($ \si[]{\angstrom} $), deviation from experimental value $ \Delta a $ ($ \si[]{\percent} $)}
 	\label{tab:nacl-relax}
@@ -133,7 +135,7 @@ as displayed in \autoref{tab:nacl-atom}. This value represents an electronic ene
 	\Delta \mathrm{H^{0}_{atom}(NaCl)} = - \Delta \mathrm{_f H^{0}_{solid}(NaCl)} + \frac{1}{2}\Delta \mathrm{H^{0}_{diss}(Cl_2)} + \Delta \mathrm{H^{0}_{subl}(Na)}
 \end{equation}
 %
-This results in $ \Delta \mathrm{H^{0}_{atom}(NaCl)} = \SI{639.7}{\kilo\joule\per\mole}$. The atomization energy differs from that by $ \SI{-2.5}{\percent} $ which is deduced to the fact that atomization energy and enthalpy are per definition not identical. Thermal corrections need to be added to make the values comparable.
+This results in $ \Delta \mathrm{H^{0}_{atom}(NaCl)} = \SI{639.7}{\kilo\joule\per\mole}$. The atomization energy differs from that by $ \SI{-2.5}{\percent} $ which is due to the fact that atomization energy and enthalpy are per definition not identical. Thermal corrections need to be added to make the values comparable. According to basic physical chemistry, it is necessary to include the volume work ($ pV $) to come from energy to enthalpy. Additionally, all computed quantities have to be corrected to the temperature of the experimental reference to assure comparability. This can be achieved by employing well known formulae from statistical mechanics.
 %
 \begin{table}
 	\centering
@@ -150,9 +152,9 @@ This results in $ \Delta \mathrm{H^{0}_{atom}(NaCl)} = \SI{639.7}{\kilo\joule\pe
 %
 \subsection{Band gap}
 %
-Band gaps of sodium chloride were computed on a PW1PW\autocite[]{pw1pw}/POB-TZVP\autocite[]{pob-xzvp}, PBE0/POB-TZVP, and PBE0/mTZVP\autocite[]{mtzvp} level of theory. The band gaps were first calculated with the standard amount of Fock exchange $ \alpha $ included in the respective functionals. Subsequently, self-consistent hybrid calculations were performed in order to determine the optimal amount of Fock exchange. Having obtained this information, band gaps were computed using the optimal amount of Fock exchange. Results are summarized in \autoref{tab:nacl-bandgap}. Note that the inverse of $ \alpha $ corresponds to the dielectric constant $ \varepsilon $.
+Band gaps of sodium chloride were computed using PW1PW\autocite[]{pw1pw}/POB-TZVP\autocite[]{pob-xzvp}, PBE0/POB-TZVP, and PBE0/mTZVP\autocite[]{mtzvp}. The band gaps were first calculated with the standard amount of Fock exchange $ \alpha $ included in the respective functionals. Subsequently, self-consistent hybrid calculations were performed in order to determine the optimal amount of Fock exchange. Having obtained this information, band gaps were computed using the optimal amount of Fock exchange. Results are summarized in \autoref{tab:nacl-bandgap}. Note that the inverse of $ \alpha $ corresponds to the dielectric constant $ \varepsilon $.
 %
-\begin{table}[H]
+\begin{table}
 	\centering
 	\captionabove{Calculated band gaps of sodium chloride ($ \si[]{\electronvolt} $), amount of Fock exchange $ \alpha $ and dielectric constant $ \varepsilon $.}
 	\label{tab:nacl-bandgap}
@@ -170,17 +172,17 @@ Band gaps of sodium chloride were computed on a PW1PW\autocite[]{pw1pw}/POB-TZVP
 	\end{tabular}
 \end{table}
 %
-During the past six decades, numerous experimental band gaps have been reported in the literature\autocite[]{nacl-bandgaps} mostly ranging from 8.4 to $ \SI{9.0}{\electronvolt}$. It can be seen that the quality of the calculated band gaps significantly increases upon using the optimized amount of Fock exchange. While all tested method with standard amount of Fock exchange underestimate the experimental band gaps, PBE0/mTZVP with an optimal amount of Fock exchange is well in the range of the reported reference values. However, PBE0/POB-TZVP and PW1PW/POB-TZVP with an optimal amount of Fock exchange overestimate the band gap but not as much as it was underestimated before. Hence, an mTZVP seems to be more suitable for this kind of calculation. A reason might be found in the missing diffuse functions in POB-TZVP in order to avoid linear dependencies in solid state calculations. Despite the increased accuracy, one has to keep the rather large computational effort of self-consistent hybrid calculations in mind.
+During the past six decades, numerous experimental band gaps have been reported in the literature\autocite[]{nacl-bandgaps} mostly ranging from 8.4 to $ \SI{9.0}{\electronvolt}$. It can be seen that the quality of the calculated band gaps significantly increases upon using the optimized amount of Fock exchange. While all tested method with standard amount of Fock exchange underestimate the experimental band gaps, PBE0/mTZVP with an optimal amount of Fock exchange is well in the range of the reported reference values. However, there is an improvement for PBE0/POB-TZVP and PW1PW/POB-TZVP compared to the pure methods (without optimization of amount of Fock exchange). Hence, an mTZVP seems to be more suitable for this kind of calculation. A reason might be found in the missing diffuse functions in POB-TZVP in order to avoid linear dependencies in solid state calculations. Despite the increased accuracy, one has to keep the rather large computational effort of self-consistent hybrid calculations in mind.
 %
 \subsection{Projected density of states}
 %
-The projected density of states (PDOS) of sodium chloride was computed on a PBE0/POB-TZVP level of theory with standard and optimal amount of Fock exchange (as given in \autoref{tab:nacl-bandgap}). It is displayed in \autoref{fig:pdos}.
+The projected density of states (PDOS) of sodium chloride was computed using PBE0/POB-TZVP with standard and optimal amount of Fock exchange (as given in \autoref{tab:nacl-bandgap}). It is displayed in \autoref{fig:pdos}.
 %
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\input{Graphen/pdos.pgf}
 	\vspace{-20pt}
-	\caption{Projected density of states of NaCl on a PBE0/POB-TZVP level of theory with standard (left) and optimal Fock exchange fraction (right) obtained by a self-consistent hybrid calculation (see \autoref{tab:nacl-bandgap}).}
+	\caption{Projected density of states of NaCl on a PBE0/POB-TZVP level of theory with standard (left) and optimal Fock exchange fraction (right) obtained by a self-consistent hybrid calculation (see \autoref{tab:nacl-bandgap}). Energies are relative to the Fermi energy.}
 	\label{fig:pdos}
 \end{figure}
 %
@@ -190,7 +192,7 @@ Generally, both PDOS plots look quite similar. The unoccupied crystal orbitals i
 \newpage
 \section{Calculating surfaces of Rutile}
 %
-The second part of this course dealt with the investigation of low-index rutile $ \ce{TiO2}$ surfaces including structural relaxations, slab models and surface energies as well as a Wulff construction. All calculations were performed using the \textsc{Crystal} program package. The Wulff construction was done with \textsc{Vesta}\autocite[]{vesta}. An experimental crystal structure of rutile was taken from the Crystallography Open Database (COD-ID: 9004141). This specific structure was chosen as experimental input because it was measured at $ \SI{25}{\kelvin} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
+The second part of this course dealt with the investigation of low-index rutile $ \ce{TiO2}$ surfaces including structural relaxations, slab models and surface energies as well as a Wulff construction. All calculations were performed using the \textsc{Crystal} program package. The Wulff construction was done with \textsc{Vesta}\autocite[]{vesta}. An experimental crystal structure of rutile\autocite[]{rutile-structure-cod} was taken from the Crystallography Open Database (COD-ID: 9004141). This specific structure was chosen as experimental input because it was measured at $ \SI{25}{\celsius} $ which was closest to the optimum temperature of $ \SI{0}{\kelvin} $ (temperature of the calculations).
 %
 \subsection{Structural relaxation}
 %
@@ -204,19 +206,20 @@ Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW
 		\toprule
 		Method      & comp time & $a$   & $\Delta a $ & $c$   & $\Delta c$ & $x_\mathrm{frac} \mathrm{(O)}$ \\
 		\midrule
-		PBE0/rev2   & 344.76    & 4.578 & -0.33       & 2.951 & -0.28      & 0.305                          \\
-		PBESOL/rev2 & 19.01     & 4.589 & -0.08       & 2.946 & -0.42      & 0.304                          \\
-		PW1PW/rev2  & 328.13    & 4.585 & -0.18       & 2.953 & -0.2       & 0.305                          \\
-		PWGGA/rev2  & 57.42     & 4.634 & 0.89        & 2.969 & 0.34       & 0.305                          \\
-		PBE0/std    & 184.25    & 4.565 & -0.62       & 2.981 & 0.74       & 0.304                          \\
-		PBESOL/std  & 13.97     & 4.577 & -0.35       & 2.970 & 0.39       & 0.304                          \\
-		PW1PW/std   & 219.18    & 4.571 & -0.47       & 2.982 & 0.77       & 0.304                          \\
-		PWGGA/std   & 23.77     & 4.617 & 0.51        & 2.993 & 1.16       & 0.304                          \\
+		PBE0/rev2   & 344.76    & 4.578 & -0.33       & 2.951 & -0.28      & 0.3050                          \\
+		PBESOL/rev2 & 19.01     & 4.589 & -0.08       & 2.946 & -0.42      & 0.3042                          \\
+		PW1PW/rev2  & 328.13    & 4.585 & -0.18       & 2.953 & -0.20       & 0.3049                          \\
+		PWGGA/rev2  & 57.42     & 4.634 & 0.89        & 2.969 & 0.34       & 0.3048                          \\
+		PBE0/std    & 184.25    & 4.565 & -0.62       & 2.981 & 0.74       & 0.3044                          \\
+		PBESOL/std  & 13.97     & 4.577 & -0.35       & 2.970 & 0.39       & 0.3036                          \\
+		PW1PW/std   & 219.18    & 4.571 & -0.47       & 2.982 & 0.77       & 0.3043                          \\
+		PWGGA/std   & 23.77     & 4.617 & 0.51        & 2.993 & 1.16       & 0.3041                          \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 %
-All tested methods give reasonable results for the lattice parameters $ a, c $ since they are - except for PWGGA/std at $ c $ - within $ \SI{1}{\percent} $ accuracy compared to the reference data of $ a_\mathrm{exp} = \SI{4.593}{\angstrom} $ and $ c_\mathrm{exp} = \SI{2.959}{\angstrom} $. There are some general trends observable: rev2 results are more accurate than std results which justifies the usage of the former basis sets instead of the \textsc{Crystal} default basis sets. The PWGGA functional is too repulsive and results in too large lattice parameters for both basis sets. The other GGA functional PBESOL yields better results and slightly underestimates the lattice parameters, except for $ c $ with the worse std basis sets. In contrast to that, the two investigated hybrid functionals do not perform systematically better than their GGA competitors. Instead, they perform even worse than PBESOL in most cases. Taking a look at the computed fractional $ x $ coordinates of the oxygen atoms, all investigated methods obtain identical results. The differences are very small and negligible. The observation that hybrid functionals do not happen to be necessarily better than GGA functionals with regard to geometry optimizations was also found for NaCl and discussed before - especially, when noting the largely increased computation times. 
+All tested methods give reasonable results for the lattice parameters $ a, c $ since they are - except for PWGGA/std at $ c $ - within $ \SI{1}{\percent} $ accuracy compared to the reference data of $ a_\mathrm{exp} = \SI{4.593}{\angstrom} $ and $ c_\mathrm{exp} = \SI{2.959}{\angstrom} $. Note that the reference data refer to $ T = \SI{298}{\kelvin} $ and therefore, are considered as high-temperature data. Hence, a lot of the computed lattice parameters (computation at $ T = \SI{0}{\kelvin} $) are too short (thermal expansion of matter).
+There are some general trends observable: rev2 results are more accurate than std results which justifies the usage of the former basis sets instead of the \textsc{Crystal} default basis sets. The PWGGA functional is too repulsive and results in too large lattice parameters for both basis sets. The other GGA functional PBESOL yields better results and slightly underestimates the lattice parameters, except for $ c $ with the worse std basis sets. In contrast to that, the two investigated hybrid functionals do not perform systematically better than their GGA competitors. Instead, they perform even worse than PBESOL in most cases. Taking a look at the computed fractional $ x $ coordinates of the oxygen atoms, all investigated methods obtain almost identical results that are close to the experimental data of $x_\mathrm{frac}^\mathrm{exp} \mathrm{(O)} = 0.3051$. The differences are very small and negligible. The observation that hybrid functionals do not happen to be necessarily better than GGA functionals with regard to geometry optimizations was also found for NaCl and discussed before - especially, when noting the largely increased computation times. Note that this is not valid for heavily correlated systems (aromatic systems, open-shell transition metals).
 %
 \subsection{Surface energy}
 %
@@ -230,7 +233,7 @@ Having received the information that PBESOL/rev2 is an accurate and cheap level 
 %
 Obeying these criteria, only certain values for $ L, S $ are possible. These are depicted in \autoref{tab:tio2-ls}.
 %
-\begin{table}[H]
+\begin{table}
 	\centering
 	\captionabove{Allowed values for $ L, S $ in the definition of slab models of low-index rutile surfaces ($ j \in  \mathbb{N}$).}
 	\label{tab:tio2-ls}
@@ -238,10 +241,10 @@ Obeying these criteria, only certain values for $ L, S $ are possible. These are
 		\toprule
 		Surface & $ L $ & $ S $ \\
 		\midrule
-		001     & 1 & $j$  \\
-		100     & 2 & $3j$    \\
-		101     & 2 & $3j$    \\
-		110     & 2 & $3j$     \\
+		(001)     & 1 & $j$  \\
+		(100)     & 2 & $3j$    \\
+		(101)     & 2 & $3j$    \\
+		(110)     & 2 & $3j$     \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -252,9 +255,9 @@ After having computed slab models consisting out of two to eight stoichiometric 
 	E_\mathrm{surf} (n) = \frac{E_\mathrm{slab}(n) - n \cdot E_\mathrm{bulk}}{2A}
 \end{equation}
 %
-where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The surface energy oscillates and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. In case of the (001) and (101) surface, both methods agree on the surface energy. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
+where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The course of the surface energy shows an odd/even oscillation and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. Note that for the (100) surface, $ S = 6j $ was used in the computation instead of $ S=3j $ as given in \autoref{tab:tio2-ls}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. In case of the (001) and (101) surface, both methods agree on the surface energy. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
 %
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\input{Graphen/slab.pgf}
 	\vspace{-20pt}
@@ -262,46 +265,47 @@ where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is 
 	\label{fig:slab}
 \end{figure}
 %
-\begin{table}[H]
+\begin{table}
 	\centering
-	\captionabove{Surface energies of rutile: Surface, number of layers $n$, energies computed with PBESOL and PW1PW $ E_\mathrm{PBESOL}, E_\mathrm{PW1PW} $ (in $\si{\joule\per m\squared}$).}
+	\captionabove{Surface energies of rutile: Surface, number of layers $n$, energies computed with PBESOL and PW1PW $ E_\mathrm{PBESOL}, E_\mathrm{PW1PW} $ and comparison to the literature\autocite[]{rutile-surface-energy} (in $\si{\joule\per m\squared}$).}
 	\label{tab:tio2-pw1pw-compare}
-	\begin{tabular}{lccc}
+	\begin{tabular}{lcccc}
 		\toprule
-		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ \\
+		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ & $ E_\mathrm{lit} $ \\
 		\midrule
-		001     & 8 & 1.411     & 1.407    \\
-		100     & 8 & 0.935     & 0.845    \\
-		101     & 8 & 1.237     & 1.190    \\
-		110     & 8 & 0.722     & 0.592    \\
+		(001)     & 8 & 1.411     & 1.407    & 1.47 \\
+		(100)     & 8 & 0.935     & 0.845    & 0.85 \\
+		(101)     & 8 & 1.237     & 1.190    & 1.20 \\
+		(110)     & 8 & 0.722     & 0.592    & 0.62 \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 %
-Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the three distinct atoms in the topmost layer of the surface models first, it is observed that the Ti3 atoms move to larger distances whereas the Ti2 atoms show a negative $ \Delta z $. The oxygen atoms mostly show a slightly positive relaxation. Again, oscillations of the values are observed. This means that the $ \ce{TiO6} $ octahedra are remarkably distorted at the borders of the surface models. 
+Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the three distinct atoms in the topmost layer of the surface models first, it is observed that the sixfold coordinated Ti3 atoms move to larger distances whereas the fivefold coordinated Ti2 atoms show a negative $ \Delta z $. This means that Ti2 atoms are shifted towards the bulk and the Ti3 atoms are shifted oppositely which both is in accordance to the literature.\autocite[]{rutile-surface-energy} The observed shifts are a result of tendency of the atoms to correct the for lack of coordination. The oxygen atoms mostly show a slightly positive relaxation. Again, odd/even oscillations of the values are observed. 
 
-For Ti2 and Ti3, a similar behavior is observed for the bulk-like atoms in the middle of the surface models: These atoms show large oscillating relaxations counteracting each other. Opposed to that, the oxygen atoms nearly do not relax except for O4/5 at $n=3$ but stay close to their original positions. This leads to distortions of the $ \ce{TiO6} $ octahedra which are different to those at the topmost layers. The computed relaxations are in good agreement with the literature.\autocite{rutile-surface-energy}
+Looking at the bulk-like atoms, the oxygen atoms do nearly not relax while Ti2 and Ti3 atoms show different behaviors for surfaces with odd and even number of layers: In odd layer surfaces one titanium atom per layer moves upwards due to an artificial mirror plane in the middle layer whereas the other ones do nearly not move. In even layer surfaces, it is observed that one titanium atom in each layer moves up, and the other one moves down but with a different magnitude. Again, observations are in accordance with literature.\autocite[]{rutile-surface-energy}
 %
 \begin{figure}[H]
 	\centering
 	\input{Graphen/dz.pgf}
 	\vspace{-20pt}
-	\caption{Relaxation of symmetry-nonequivalent atoms in $ \ce{TiO2} $ (110) surfaces of different thickness: Atoms in the topmost layer (left) are compared to bulk-like atoms in middle layers (right).}
+	\caption{Relaxation of symmetry-nonequivalent atoms in the topmost layer of $ \ce{TiO2} $ (110) surfaces of different thickness.}
 	\label{fig:dz}
 \end{figure}
 %
 \subsection{Crystal shape}
 %
-Finally, the calculated surface energies are used to generate a graphical representation of the rutile crystal shape. According to Wulff's theorem, the length
-of a vector normal to a crystal face is proportional to its surface energy. Hence, knowing the surface energy of a sufficient number of surfaces enables a reliable representation of the crystal shape. The result is displayed in \autoref{fig:wulff} and compared to experimental data which are in nice agreement. Therefore, the presented approach to access surface energies and thereby the crystal shape are considered reasonable.
+Finally, the calculated surface energies are used to generate a graphical representation of the rutile crystal shape. According to Wulff's theorem, the length of a vector normal to a crystal face is proportional to its surface energy. Hence, knowing the surface energy of a sufficient number of surfaces enables a reliable representation of the crystal shape. The result is displayed in \autoref{fig:wulff} and compared to experimental data which are in nice agreement. Therefore, the presented approach to access surface energies and thereby the crystal shape are considered reasonable.
+
+The crystal shape is also influenced by the molecular surrounding and imperfections / defects in the crystal structure. Furthermore, kinetic effects during the crystal growth process can have an influence on the crystal shape. 
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{wulff_pbesol.png}
-	\includegraphics[width=0.4\textwidth]{wulff_pw1pw.png}
-	\includegraphics[width=0.4\textwidth]{wulff_theo_lit.png}
+	\includegraphics[width=0.4\textwidth]{wulff-pbesol.eps}
+	\includegraphics[width=0.4\textwidth]{wulff-pw1pw.eps}
+	\includegraphics[width=0.4\textwidth]{wulff-theo-lit.eps}
 	\includegraphics[width=0.4\textwidth]{rutile_exp.png}
-	\caption{Crystal shape of rutile: Wulff construction based on the surface energies calculated with PBESOL (top left), PW1PW (top right), theoretical literature\autocite[]{rutile-surface-energy} (bottom left) and comparison to experimental data\autocite[]{rutile-shape} (bottom right).}
+	\caption{Crystal shape of rutile: Wulff construction based on the surface energies calculated with PBESOL (top left), PW1PW (top right), theoretical literature\autocite[]{rutile-surface-energy} (bottom left) and comparison to experimental data\autocite[]{rutile-shape} (bottom right). The surfaces are colored as follows: (110) blue, (101) orange, (001) green, (100) red.}
 	\label{fig:wulff}
 \end{figure}
 %
