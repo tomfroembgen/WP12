@@ -82,7 +82,9 @@
 		\vspace{20mm}
 		Assistants: Katharina Bauerfeind \& Berenike Stahl  \\
 		\vspace{10mm}
-		Submission 1: \today \\
+		Submission 1: January 7, 2022 \\
+		\vspace{5mm}
+		Submission 2: \today \\
 		\vspace{5mm}
 		%		Submission 2:  \today
 	\end{large}
@@ -101,7 +103,7 @@ As part of this practical computational course, bulk properties of sodium chlori
 %
 \subsection{Structural relaxation}
 %
-Full structural relaxations on the LDA/VWN\autocite[]{lda-vwn}, PWGGA\autocite[]{pwgga}, M06L\autocite[]{m06l} and PBE0\autocite[]{pbe0} level of theory employing POB-DZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. Noting the different levels used in this task -- namely LDA, GGA, meta-GGA and a hybrid functional which correspond to the levels one to four on Jacobs ladder of density functional theory -- it is unexpected that PWGGA and PBE0 representing rung two and four on Jacobs ladder, respectively yield results of the same quality whereas M06L belonging to rung three on Jacobs ladder performs worse. The good performance of PBE0 is expected as it is a high-quality method. GGA functionals as PWGGA are known to sometimes create metallic systems when computing insulators as NaCl. In this case, the unexpected good performance of PWGGA is probably due to fortuitous error cancellation of the functional and the small double-$ \zeta $ basis set. Such behavior was also observed in other computational lab courses. 
+Full structural relaxations on the LDA/VWN\autocite[]{lda-vwn}, PWGGA\autocite[]{pwgga}, M06L\autocite[]{m06l} and PBE0\autocite[]{pbe0} level of theory employing POB-DZVP-rev2 basis sets\autocite[]{pob-xzvp-rev2} were performed. Results are summarized in \autoref{tab:nacl-relax}. The LDA/VWN functional strongly underestimates the reference value of $ a_\mathrm{exp} = \SI{5.5937}{\angstrom} $ which can be deduced to the overbinding nature of the functional. Improvement comes with the meta-GGA functional M06L which nevertheless underestimates the lattice parameter by more than $ \SI{1}{\percent} $. Good accuracy is reached by PWGGA and PBE0. Noting the different levels used in this task -- namely LDA, GGA, meta-GGA and a hybrid functional which correspond to the levels one to four on Jacobs ladder of density functional theory -- it is unexpected that PWGGA and PBE0 representing rung two and four on Jacobs ladder, respectively yield results of the same quality whereas M06L belonging to rung three on Jacobs ladder performs worse. The good performance of PBE0 is expected as it is a high-quality method. GGA functionals as PWGGA are known to sometimes create metallic systems when computing insulators as NaCl. In this case, the unexpected good performance of PWGGA is probably due to fortuitous error cancellation of the functional and the small double-$ \zeta $ basis set. Such behavior was also observed in other computational lab courses.
 The hybrid functional PBE0 comes with a largely increased computation time which is about four times larger compared to the other functionals. In conclusion, it can be said that reasonable geometries do not require the use of hybrid functionals but can also be obtained from certain (meta-)GGA functionals. This is also well known for geometry optimization of molecules.\autocite[]{tpss,r2-scan-3c}
 
 %
@@ -206,14 +208,14 @@ Full structural relaxations on the PBE0, PWGGA, PBESOL\autocite[]{pbesol} and PW
 		\toprule
 		Method      & comp time & $a$   & $\Delta a $ & $c$   & $\Delta c$ & $x_\mathrm{frac} \mathrm{(O)}$ \\
 		\midrule
-		PBE0/rev2   & 344.76    & 4.578 & -0.33       & 2.951 & -0.28      & 0.3050                          \\
-		PBESOL/rev2 & 19.01     & 4.589 & -0.08       & 2.946 & -0.42      & 0.3042                          \\
-		PW1PW/rev2  & 328.13    & 4.585 & -0.18       & 2.953 & -0.20       & 0.3049                          \\
-		PWGGA/rev2  & 57.42     & 4.634 & 0.89        & 2.969 & 0.34       & 0.3048                          \\
-		PBE0/std    & 184.25    & 4.565 & -0.62       & 2.981 & 0.74       & 0.3044                          \\
-		PBESOL/std  & 13.97     & 4.577 & -0.35       & 2.970 & 0.39       & 0.3036                          \\
-		PW1PW/std   & 219.18    & 4.571 & -0.47       & 2.982 & 0.77       & 0.3043                          \\
-		PWGGA/std   & 23.77     & 4.617 & 0.51        & 2.993 & 1.16       & 0.3041                          \\
+		PBE0/rev2   & 344.76    & 4.578 & -0.33       & 2.951 & -0.28      & 0.3050                         \\
+		PBESOL/rev2 & 19.01     & 4.589 & -0.08       & 2.946 & -0.42      & 0.3042                         \\
+		PW1PW/rev2  & 328.13    & 4.585 & -0.18       & 2.953 & -0.20      & 0.3049                         \\
+		PWGGA/rev2  & 57.42     & 4.634 & 0.89        & 2.969 & 0.34       & 0.3048                         \\
+		PBE0/std    & 184.25    & 4.565 & -0.62       & 2.981 & 0.74       & 0.3044                         \\
+		PBESOL/std  & 13.97     & 4.577 & -0.35       & 2.970 & 0.39       & 0.3036                         \\
+		PW1PW/std   & 219.18    & 4.571 & -0.47       & 2.982 & 0.77       & 0.3043                         \\
+		PWGGA/std   & 23.77     & 4.617 & 0.51        & 2.993 & 1.16       & 0.3041                         \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -226,8 +228,8 @@ There are some general trends observable: rev2 results are more accurate than st
 Having received the information that PBESOL/rev2 is an accurate and cheap level of theory for geometry optimizations of rutile, low-index surfaces of rutile were investigated with this method. Surfaces were generated with the \textit{SLABCUT} option and specified by the parameters $ L, S $ which denote the starting layer and the number of atomic layers that form the surface, respectively. The surface slabs need to fulfill requirements in order to make the computation feasible. They
 %
 \begin{itemize}
-	\item must be symmetric and conserve the symmetry of the underlying crystal structure (rutile) 
-	\item must be stoichiometric w.r.t the sum formula of the compound ($ \ce{TiO2} $) 
+	\item must be symmetric and conserve the symmetry of the underlying crystal structure (rutile)
+	\item must be stoichiometric w.r.t the sum formula of the compound ($ \ce{TiO2} $)
 	\item must not possess a dipole moment in $ z $ direction (the surfaces are formally formed in the $ xy $ plane)
 \end{itemize}
 %
@@ -241,10 +243,10 @@ Obeying these criteria, only certain values for $ L, S $ are possible. These are
 		\toprule
 		Surface & $ L $ & $ S $ \\
 		\midrule
-		(001)     & 1 & $j$  \\
-		(100)     & 2 & $3j$    \\
-		(101)     & 2 & $3j$    \\
-		(110)     & 2 & $3j$     \\
+		(001)   & 1     & $j$   \\
+		(100)   & 2     & $3j$  \\
+		(101)   & 2     & $3j$  \\
+		(110)   & 2     & $3j$  \\
 		\bottomrule
 	\end{tabular}
 \end{table}
@@ -255,8 +257,8 @@ After having computed slab models consisting out of two to eight stoichiometric 
 	E_\mathrm{surf} (n) = \frac{E_\mathrm{slab}(n) - n \cdot E_\mathrm{bulk}}{2A}
 \end{equation}
 %
-where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The course of the surface energy shows an odd/even oscillation and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. Note that for the (100) surface, $ S = 6j $ was used in the computation instead of $ S=3j $ as given in \autoref{tab:tio2-ls}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. In case of the (001) and (101) surface, both methods agree on the surface energy. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable. 
-%
+where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is the slab energy, $ E_\mathrm{bulk} $ the bulk energy (3D system) and $ A $ is the area of the employed surface model. The course of the surface energy shows an odd/even oscillation and converges to the exact value with an increasing (and sufficiently large) number of stoichiometric layers. For reasons of convenience, the surface energies are not given in tables but in \autoref{fig:slab}. Note that for the (100) surface, $ S = 6j $ was used in the computation instead of $ S=3j $ as given in \autoref{tab:tio2-ls}. The computed surface energies are in good agreement with the literature.\autocite{rutile-surface-energy} They were supposed to be specifically compared to PW1PW/rev2 results (but for the largest surface model only). This is given in \autoref{tab:tio2-pw1pw-compare}. In case of the (001) and (101) surface, both methods agree on the surface energy. They do deviate in case of (100) and (110). Taking a look the above-mentioned literature, it can be seen that converging the surface energy requires more than eight stoichiometric layers. Therefore, the obtained results are considered acceptable.
+
 \begin{figure}
 	\centering
 	\input{Graphen/slab.pgf}
@@ -273,19 +275,17 @@ where $ n $ denotes the number of stoichiometric layers, $ E_\mathrm{slab} $ is 
 		\toprule
 		Surface & $n$ & $ E_\mathrm{PBESOL}$ & $ E_\mathrm{PW1PW} $ & $ E_\mathrm{lit} $ \\
 		\midrule
-		(001)     & 8 & 1.411     & 1.407    & 1.47 \\
-		(100)     & 8 & 0.935     & 0.845    & 0.85 \\
-		(101)     & 8 & 1.237     & 1.190    & 1.20 \\
-		(110)     & 8 & 0.722     & 0.592    & 0.62 \\
+		(001)   & 8   & 1.411                & 1.407                & 1.47               \\
+		(100)   & 8   & 0.935                & 0.845                & 0.85               \\
+		(101)   & 8   & 1.237                & 1.190                & 1.20               \\
+		(110)   & 8   & 0.722                & 0.592                & 0.62               \\
 		\bottomrule
 	\end{tabular}
 \end{table}
-%
-Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the three distinct atoms in the topmost layer of the surface models first, it is observed that the sixfold coordinated Ti3 atoms move to larger distances whereas the fivefold coordinated Ti2 atoms show a negative $ \Delta z $. This means that Ti2 atoms are shifted towards the bulk and the Ti3 atoms are shifted oppositely which both is in accordance to the literature.\autocite[]{rutile-surface-energy} The observed shifts are a result of tendency of the atoms to correct the for lack of coordination. The oxygen atoms mostly show a slightly positive relaxation. Again, odd/even oscillations of the values are observed. 
 
-Looking at the bulk-like atoms, the oxygen atoms do nearly not relax while Ti2 and Ti3 atoms show different behaviors for surfaces with odd and even number of layers: In odd layer surfaces one titanium atom per layer moves upwards due to an artificial mirror plane in the middle layer whereas the other ones do nearly not move. In even layer surfaces, it is observed that one titanium atom in each layer moves up, and the other one moves down but with a different magnitude. Again, observations are in accordance with literature.\autocite[]{rutile-surface-energy}
+Furthermore, the relaxation of symmetry-nonequivalent atoms in $ z $ direction was to be investigated for the (110) surface, where relaxation denotes the difference between the relaxed (optimized) and the initial (non-relaxed) structure. The relaxations are displayed in \autoref{fig:dz}. Taking a look at the three distinct atoms in the topmost layer of the surface models first, it is observed that the sixfold coordinated Ti3 atoms move to larger distances whereas the fivefold coordinated Ti2 atoms show a negative $ \Delta z $. This means that Ti2 atoms are shifted towards the bulk and the Ti3 atoms are shifted oppositely which both is in accordance to the literature.\autocite[]{rutile-surface-energy} The observed shifts are a result of tendency of the atoms to correct the for lack of coordination. The oxygen atoms mostly show a slightly positive relaxation. Again, odd/even oscillations of the values are observed.
 %
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\input{Graphen/dz.pgf}
 	\vspace{-20pt}
@@ -293,17 +293,19 @@ Looking at the bulk-like atoms, the oxygen atoms do nearly not relax while Ti2 a
 	\label{fig:dz}
 \end{figure}
 %
+Looking at the bulk-like atoms, the oxygen atoms do nearly not relax while Ti2 and Ti3 atoms show different behaviors for surfaces with odd and even number of layers: In odd layer surfaces one titanium atom per layer moves upwards due to an artificial mirror plane in the middle layer whereas the other ones do nearly not move. In even layer surfaces, it is observed that one titanium atom in each layer moves up, and the other one moves down but with a different magnitude. Bulk-like oxygen atoms in the middle of the surface layer models do nearly not relax. The observations are in accordance with literature.\autocite[]{rutile-surface-energy}
+%
 \subsection{Crystal shape}
 %
 Finally, the calculated surface energies are used to generate a graphical representation of the rutile crystal shape. According to Wulff's theorem, the length of a vector normal to a crystal face is proportional to its surface energy. Hence, knowing the surface energy of a sufficient number of surfaces enables a reliable representation of the crystal shape. The result is displayed in \autoref{fig:wulff} and compared to experimental data which are in nice agreement. Therefore, the presented approach to access surface energies and thereby the crystal shape are considered reasonable.
 
-The crystal shape is also influenced by the molecular surrounding and imperfections / defects in the crystal structure. Furthermore, kinetic effects during the crystal growth process can have an influence on the crystal shape. 
+The crystal shape is also influenced by the molecular surrounding and imperfections / defects in the crystal structure. Furthermore, kinetic effects during the crystal growth process can have an influence on the crystal shape.
 %
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\textwidth]{wulff-pbesol.eps}
-	\includegraphics[width=0.4\textwidth]{wulff-pw1pw.eps}
-	\includegraphics[width=0.4\textwidth]{wulff-theo-lit.eps}
+	\includegraphics[width=0.4\textwidth]{w_pbesol.png}
+	\includegraphics[width=0.4\textwidth]{w_pw1pw.png}
+	\includegraphics[width=0.4\textwidth]{w_lit.png}
 	\includegraphics[width=0.4\textwidth]{rutile_exp.png}
 	\caption{Crystal shape of rutile: Wulff construction based on the surface energies calculated with PBESOL (top left), PW1PW (top right), theoretical literature\autocite[]{rutile-surface-energy} (bottom left) and comparison to experimental data\autocite[]{rutile-shape} (bottom right). The surfaces are colored as follows: (110) blue, (101) orange, (001) green, (100) red.}
 	\label{fig:wulff}
